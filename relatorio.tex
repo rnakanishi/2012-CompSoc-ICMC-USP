@@ -11,20 +11,79 @@
 
 \begin{document}
 \maketitle
+\newpage
 
 \begin{abstract}
-	O uso do correio eletrônico se tornou uma necesisdade pessoal com o advento da tecnologia. Com esse novo meio de comunicação há maior praticidade e agilidade na troca de mensagens sem precisar se locomover longas distâncias para conversar com outras pessoas.
+	O uso do correio eletrônico se tornou uma necessidade pessoal com o advento da tecnologia. Com esse novo meio de comunicação há maior praticidade e agilidade na troca de mensagens, de forma que não é necessário se locomover longas distâncias para conversar com outras pessoas.
 
-	Entretanto com grandes benefícios há também outros malefícios, como o spam. Nosso objetivo nessa monografia é mostrar como o spam vem trazendo adversidades para diversos usuários. Mostraremos a origem da palavra e seus usos nos dias atuais. Em seguida alguns exemplos de como esse tipo de mensagem traz desconforto para suas vítimas. Por fim um estudo de caso real, analisando as violações dos códigos da ACM -citar aqui- e a conclusão final.
+	Entretanto, a facilidade adquirida também permite o envio de milhares de mensagens eletrônicas em poucos segundos, que podem ser mensagens importantes, como um aviso de uma empresa de grande porte para seus funcionários, ou \emph{spam}, um fenômeno que cresce dia após dia.
+
+	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências os usuários do correio eletrônico.
+	Mostraremos a origem da palavra e seus usos nos dias atuais. 
+	((colocar algo como em seguida aqui)) métodos utilizados para separar mensagens importantes de spam.
+	Em seguida, alguns exemplos de como esse tipo de mensagem traz desconforto para quem o recebe. 
+	Por fim, um estudo de caso, analisando as violações dos códigos da ACM ((citar aqui)) e a conclusão.
 \end{abstract}
 
+\newpage
+
+\tableofcontents
+\newpage
+
 \section{Introdução}
+	
+\section{Filtros de Spam}
+	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
+	São inúmeras as abordagens utilizadas. 
+	Algumas se baseiam no cabeçalho da mensagem, outras na frequencia das palavras utilizadas.
+	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}[((citar?))].
+
+	\subsection{Filtro baseado na estrutura do texto}
+		Este tipo de filtro se baseia em cadeias específicas do cabeçalho do e-mail, como, por exemplo, a língua na qual foi escrito e o tipo do conteúdo da mensagem.
+
+		Estes filtros podem ser facilmente criados pelos próprios usuários em grandes servidores de e-mail, e tem como objetivo não só detectar spam, mas também separar mensagens relevantes em categorias.
+
+		A vantagem desta estratégia é o alto nível de personalização permitido, já que cada usuário pode criar seu próprio filtro dependendo do tipo de spam recebido. 
+		Além disso, a probabilidade de haver falsos-positivos é menor, já que é o próprio usuário que escolhe os parâmetros de filtragem.
+		
+		Sua desvantagem é a possível necessidade de criação de vários filtros para se obter uma separação eficaz.
+
+
+	\subsection{\emph{Whitelist}/Verificação}
+		Uma abordagem mais agressiva para a filtragem de spam é a utilização de \emph{Whitelist} em conjunto com a verificação automática.
+
+		\emph{Whitelist} é uma lista de endereços de e-mail previamente aprovados. 
+		Qualquer endereço que esteja nesta \emph{whitelist} tem sua mensagem enviada sem maiores problemas.
+		Caso o endereço não esteja contido na lista, o agente de transporte de e-mail -\emph{MTA}- envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
+
+		Como a maioria das mensagens de spam possui endereços de resposta falsos, as instruções não seriam seguidas e o e-mail não chegaria à caixa de entrada do destinatário.
+		Caso o \emph{spammer} decida fazer o que lhe foi dito, ele será adicionado à lista, porém isso o torna mais facilmente rastreável.
+		
+		Apesar de ser uma maneira eficaz de diminuir os spams, ela pode prejudicar usuários legítimos que não podem ou querem atender a essa exigência, já que isso implicaria no não recebimento de sua mensagem.
+
+		Como um exemplo deste tipo de abordagem, tem-se o \emph{Corlive.com}~\cite{corlive}, que é um servidor de e-mail que utiliza \emph{Captcha}~\cite{captcha} para validar os e-mails enviados e não permitir que \emph{bots} enviem spam.
+
+	\subsection{Distribuição adaptativa de \emph{blacklist}}
+	\subsection{Ranking baseado em regras}
+	\subsection{Filtro Bayesiano}
+		
+	\subsection{Filtro Markoviano}
+		O filtro Markoviano é um filtro estatístico baseado na teoria de Cadeias de Markov~\cite{markov}, na qual o próximo estado depende unicamente do estado atual, e leva em consideração a probabilidade de transição entre uma palavra e outra, ou seja, dada uma palavra, ele tenta predizer qual é a próxima.
+
+		Diferentemente do filtro Bayesiano, que é baseado em palavras independentes, o filtro Markoviano trabalha em cima de frases, e por isso, seu desempenho tende a ser maior, já que utiliza uma abordagem holística do texto.
+		
+	Esta estratégia é utilizada no filtro de spam \emph{CRM114}, juntamente com outras abordagens que não serão discutidas neste trabalho. Seu desempenho foi testado para diferenciar documentos japoneses confidenciais de não confidenciais, e a acurácia obtida foi maior que $99\%$ e taxa de falsos-positivos foi menor que $5.3\%$~\cite{fmarkov:japtest}.
+
+	\subsection{Gmail}
 
 \section{Casos Reais}
 
 \section{Estudo de Caso}
+\subsection{((História))}
+\subsection{Potenciais benefícios e vulnerabilidades}
+\subsection{Decisão consensual}
 
-\section{conclusão Final}
+\section{Conclusão}
 
 
 
