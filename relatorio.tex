@@ -2,6 +2,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{glossaries}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
 	
 
 \title{Como o spam afeta a comodidade do Correio Eletrônico}
@@ -9,6 +18,7 @@
 		Gustavo Shinji Inoue\\
 		Rafael Umino Nakanishi}
 
+\makeglossaries
 \begin{document}
 \maketitle
 \newpage
@@ -30,8 +40,33 @@
 \tableofcontents
 \newpage
 
+
+\printglossary
+\addcontentsline{toc}{chapter}{Glossário}
+
 \section{Introdução}
-	
+	\begin{figure*}[ht]
+		\centering
+		\begin{subfigure}[b]{0.47\textwidth}
+			\centering
+			\includegraphics[height=5cm]{Imagens/m86security/spam-country-map.png}
+			\caption{Mapa de emissores de spam((mude isso))}
+		\end{subfigure}
+		~
+		\begin{subfigure}[b]{0.47\textwidth}
+			\centering
+			\includegraphics[height=5cm]{Imagens/m86security/spam-country-bar.png}
+			\caption{12 países que mais emitem spam}
+		\end{subfigure}
+		~
+		\begin{subfigure}[b]{0.47\textwidth}
+			\centering
+			\includegraphics[height=5cm]{Imagens/m86security/spam-continent-bar.png}
+			\caption{Percentual de spam emitido por continente}
+		\end{subfigure}
+		\caption{Emissão de spam no mundo}
+		\label{fig:spamworld}
+	\end{figure*}
 \section{Filtros de Spam}
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
@@ -52,9 +87,8 @@
 	\subsection{\emph{Whitelist}/Verificação}
 		Uma abordagem mais agressiva para a filtragem de spam é a utilização de \emph{Whitelist} em conjunto com a verificação automática.
 
-		\emph{Whitelist} é uma lista de endereços de e-mail previamente aprovados. 
 		Qualquer endereço que esteja nesta \emph{whitelist} tem sua mensagem enviada sem maiores problemas.
-		Caso o endereço não esteja contido na lista, o agente de transporte de e-mail -\emph{MTA}- envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
+		Caso o endereço não esteja contido na lista, o \emph{MTA} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
 
 		Como a maioria das mensagens de spam possui endereços de resposta falsos, as instruções não seriam seguidas e o e-mail não chegaria à caixa de entrada do destinatário.
 		Caso o \emph{spammer} decida fazer o que lhe foi dito, ele será adicionado à lista, porém isso o torna mais facilmente rastreável.
@@ -64,9 +98,39 @@
 		Como um exemplo deste tipo de abordagem, tem-se o \emph{Corlive.com}~\cite{corlive}, que é um servidor de e-mail que utiliza \emph{Captcha}~\cite{captcha} para validar os e-mails enviados e não permitir que \emph{bots} enviem spam.
 
 	\subsection{Distribuição adaptativa de \emph{blacklist}}
-	\subsection{Ranking baseado em regras}
-	\subsection{Filtro Bayesiano}
+		A \emph{blacklist} é formada por mensagens que foram classificadas como spam por usuários ou mesmo por endereços especiamente criados por servidores para atrair spam.
+
+		Ao receber uma mensagem, o MTA utiliza um filtro por \emph{blacklist} para determinar se mesma é um spam conhecido, e ela só é enviada à caixa de entrada do destinatário caso ela não seja classificada como ilegítima.
+
+		Esta estratégia se baseia no uso de técnicas estatísticas para sumarizar o conteúdo de um mensagem de forma que pequenas mutações no spam não impeçam seu reconhecimento.
+
+		A probabilidade de haver falsos-positivos é pequena, já que é necessária uma marcação na mensagem para que ela entre na \emph{blacklist}. Além disso, quando ocorre uma marcação errônea de mensagens vastamente enviadas, como informativos, o gerenciador da lista pode desmarcá-las.
 		
+		Como é necessária a verificação da mensagem em um servidor, a performance deste método comparada a outros é baixa, sendo ele bastante lento.
+
+		Um exemplo de software que implementa esta abordagem é o \emph{Pyzor}~\cite{pyzor}, um software implementado em \emph{Python} sob a licença \emph{GPL}.
+
+	\subsection{Ranking baseado em regras}
+		Este filtro possui regras de ranking, principalmente expressões regulares, e tenta fazer correspondências entre o padrão e a mensagem. 
+		Cada equivalência adiciona ou diminui pontos da mensagem.
+		
+		Se a quantidade de pontos do e-mail exceder um determinado threshold, é classificado como spam, caso contrário, é classificado como uma mensagem legítima.
+
+		A dificuldade deste tipo de filtro é que, apesar de existirem regras que são contantes com o decorrer do tempo, como endereço de resposta falso ou áudio como tipo de conteúdo, há outras que mudam com o tempo, como os produtos dos quais os spams fazem propaganda, e isso causa a necessidade constante de atualização das regras.
+
+		Um software que implementa este tipo de filtro é o \emph{SpamAssassin}~\cite{spamassassin}, um projeto open-source da \emph{Apache}.
+
+	\subsection{Filtro Bayesiano}
+		A abordagem do filtro Bayesiano, criado por Paul Graham, é a utilização de modelos Bayesianos de probabilidade para determinar se uma mensagem é legítima ou não.
+
+		É criado um dicionário de palavras contendo a probabilidade de ela estar em um spam e a probabilidade de estar em uma mensagem válida. Esse dicionário é utilizado para calcular a probabilidade geral de a mensagem ser um spam, com base na teoria da probabilidade condicional de Bayes.
+
+		Este filtro possui traz vários benefícios como ser automatizável, ou seja, não são necessárias pessoas para definir os valores de probabilidade, já que ele pode aprender, isto é, adicionar novas palavras ou modificar a probabilidade de uma palavra de acordo com a marcação de um e-mail como spam ou válido.
+
+		Além disso, sua implementação e a teoria em que se baseia são extremamente simples e sua performance é melhor que a de filtros baseados em regras.
+		
+		Um software que implementa o filtro Bayesiano é o \emph{SpamBayes}~\cite{spambayes}, disponível para os serviços de e-mail \emph{Gmail}, \emph{MSN Hotmail}, \emph{Yahoo! Mail}, entre outros.
+
 	\subsection{Filtro Markoviano}
 		O filtro Markoviano é um filtro estatístico baseado na teoria de Cadeias de Markov~\cite{markov}, na qual o próximo estado depende unicamente do estado atual, e leva em consideração a probabilidade de transição entre uma palavra e outra, ou seja, dada uma palavra, ele tenta predizer qual é a próxima.
 
@@ -87,5 +151,6 @@
 
 
 
+\include{glossary}
 
 \end{document}
