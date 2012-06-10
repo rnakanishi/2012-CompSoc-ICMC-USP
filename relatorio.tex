@@ -1,8 +1,9 @@
-\documentclass{article}
+\documentclass[a4paper,dvipdfm]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{indentfirst}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{glossaries}
 \usepackage{cite}
 \usepackage{url}
@@ -10,7 +11,6 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
-
 	
 
 \title{Como o spam afeta a comodidade do Correio Eletrônico}
@@ -21,7 +21,7 @@
 \makeglossaries
 \begin{document}
 \maketitle
-\newpage
+%\newpage
 
 \begin{abstract}
 	O uso do correio eletrônico se tornou uma necessidade pessoal com o advento da tecnologia. Com esse novo meio de comunicação há maior praticidade e agilidade na troca de mensagens, de forma que não é necessário se locomover longas distâncias para conversar com outras pessoas.
@@ -40,14 +40,12 @@
 \tableofcontents
 \newpage
 
-
-\printglossary
+\printglossaries
 \addcontentsline{toc}{chapter}{Glossário}
 
 \section{Introdução}
 	\begin{figure*}[ht]
-		\centering
-		\begin{subfigure}[b]{0.47\textwidth}
+		\begin{subfigure}[b]{\textwidth}
 			\centering
 			\includegraphics[height=5cm]{Imagens/m86security/spam-country-map.png}
 			\caption{Mapa de emissores de spam((mude isso))}
@@ -67,6 +65,7 @@
 		\caption{Emissão de spam no mundo}
 		\label{fig:spamworld}
 	\end{figure*}
+
 \section{Filtros de Spam}
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
@@ -149,8 +148,9 @@
 
 \section{Conclusão}
 
+\bibliography{refs}
+\bibliographystyle{acm}
 
-
-\include{glossary}
+%\include{glossary}
 
 \end{document}
