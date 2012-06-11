@@ -9,7 +9,6 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{hyperref}
 \usepackage[acronym]{glossaries}
 	
 
@@ -19,6 +18,62 @@
 		Rafael Umino Nakanishi}
 
 \makeglossaries
+
+\newacronym{acm}{ACM}{Association for Computing Machinery}
+\newglossaryentry{email} {
+	name={E-mail}, 
+	description={Correio eletrônico, termo usualmente utilizado para denotar a mensagem eviada por este meio.}
+}
+\newglossaryentry{cabecalho} {
+	name={cabeçalho}, 
+	description={Parte do e-mail que contem informações suplementares de transmissão. Entre seus campos, são encontrados endereço do emissor, endereço do receptor, endereço de resposta, data de emissão, tipo do conteúdo e assunto.}
+}
+\newglossaryentry{falsopos} {
+	name={falso-positivo}, 
+	description={Classificação errônea na qual, para este contexto, um e-mail legítimo é classificado como spam}
+}
+\newglossaryentry{captcha} {
+	name={CAPTCHA}, description={\emph{Completely Automated Public Turing test to tell Computers and Humans Apart}. Teste criado para diferenciar seres humanos de máquinas. Consiste em imagens de mensagens distorcidas para evitar a interpretação automática por máquinas.}
+}
+\newglossaryentry{spambot} {
+	name={spambot},
+	description={Bot projetado para enviar spam de forma massiva, automaticamente.}
+}
+\newglossaryentry{bot} {
+	name={bot}, 
+	description={Softwares criados para realizar alguma tarefa de forma automatizada.}
+}
+\newglossaryentry{cadmarkov} {
+	name={Cadeia de Markov},
+	description={Conjunto de estados no qual um processo ocorre. O processo inicia em um estado e se move sucessivamente, transicionando entre estados, a cada passo. O estado para o qual o processo se move depende unicamente, de forma probabilística, do estado em que ele se encontra atualmente.},
+	plural={Cadeias de Markov}
+	
+}
+\newglossaryentry{crm114} {
+	name={\emph{CRM114}, 
+	description={Software anti-spam baseado em técnicas estatísticas para a filtragem e classificação de dados. Seu código fonte na linguagem C é disponibilizado sob a licença \emph{GPL}}}
+}
+\newglossaryentry{gpl} {
+	name={\emph{GPL}, 
+	description={\emph{General Public License}. Licença para software livre.}}
+}
+\newglossaryentry{whitelist} {
+	name={whitelist}, 
+	description={Lista de endereços de e-mail de remetentes legítimos, previamente validados.}
+}
+\newglossaryentry{blacklist} {
+	name={blacklist}, 
+	description={Lista de mensagens classificadas como spam.}
+}
+\newglossaryentry{mta} {
+	name={MTA},
+	description={Mail Transfer Agent. Software que transfere mensagens de correio eletrônico de um cliente para outro, baseado em uma arquitetura cliente-servidor.}
+}
+\newglossaryentry{threshold} {
+	name={threshold}, 
+	description={Valor utilizado como limitante para uma classificação.}
+}
+
 \begin{document}
 \maketitle
 %\newpage
@@ -28,11 +83,12 @@
 
 	Entretanto, a facilidade adquirida também permite o envio de milhares de mensagens eletrônicas em poucos segundos, que podem ser mensagens importantes, como um aviso de uma empresa de grande porte para seus funcionários, ou \emph{spam}, um fenômeno que cresce dia após dia.
 
+	((Mudar isso))
 	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências os usuários do correio eletrônico.
 	Mostraremos a origem da palavra e seus usos nos dias atuais. 
 	((colocar algo como em seguida aqui)) métodos utilizados para separar mensagens importantes de spam.
 	Em seguida, alguns exemplos de como esse tipo de mensagem traz desconforto para quem o recebe. 
-	Por fim, um estudo de caso, analisando as violações dos códigos da ACM ((citar aqui)) e a conclusão.
+	Por fim, um estudo de caso, analisando as violações dos códigos da \gls{ACM}~\cite{ACM} e a conclusão.
 \end{abstract}
 
 \newpage
@@ -40,8 +96,6 @@
 \tableofcontents
 \newpage
 
-\printglossaries
-\addcontentsline{toc}{chapter}{Glossário}
 
 \section{Introdução}
 	\begin{figure*}[ht]
@@ -69,7 +123,7 @@
 \section{Filtros de Spam}
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
-	Algumas se baseiam no cabeçalho da mensagem, outras na frequencia das palavras utilizadas.
+	Algumas se baseiam no \gls{cabeçalho} da mensagem, outras na frequência das palavras utilizadas.
 	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}((citar?)).
 
 	\subsection{Filtro baseado na estrutura do texto}
@@ -164,8 +218,12 @@
 
 \section{Conclusão}
 
+\printglossaries
+\addcontentsline{toc}{section}{Glossário}
+
 \bibliography{refs}
 \bibliographystyle{acm}
+\addcontentsline{toc}{section}{Referências}
 
 %\include{glossary}
 
