@@ -10,7 +10,6 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{hyperref}
-\usepackage{glossaries}
 \usepackage[acronym]{glossaries}
 	
 
@@ -71,7 +70,7 @@
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
 	Algumas se baseiam no cabeçalho da mensagem, outras na frequencia das palavras utilizadas.
-	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}[((citar?))].
+	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}((citar?)).
 
 	\subsection{Filtro baseado na estrutura do texto}
 		Este tipo de filtro se baseia em cadeias específicas do cabeçalho do e-mail, como, por exemplo, a língua na qual foi escrito e o tipo do conteúdo da mensagem.
@@ -139,6 +138,22 @@
 	Esta estratégia é utilizada no filtro de spam \emph{CRM114}, juntamente com outras abordagens que não serão discutidas neste trabalho. Seu desempenho foi testado para diferenciar documentos japoneses confidenciais de não confidenciais, e a acurácia obtida foi maior que $99\%$ e taxa de falsos-positivos foi menor que $5.3\%$~\cite{fmarkov:japtest}.
 
 	\subsection{Gmail}
+		A técnica mais utilizada pelo provedor de serviços \emph{Gmail} é o aprendizado baseado em instâncias, chamado pelo provedor de \emph{Community clicks}, ou seja, a cada mensagem que o usuário marca como spam ou como mensagem legítima, seus filtros são aprimorados.
+
+		Outra técnica é o aprendizado de máquina usado para combinar e indexar os conjuntos de busca do buscador Google, que permite a junção de vários fatores para identificar mensagens semelhantes e classificá-las como spam.
+		Além disso, são aplicadas ferramentas como \emph{OCR} de outro serviço da empresa, o \emph{Google Book Search}, serviço de busca em livros (podem ser imagens), para identificar spams em forma de imagens.
+
+		A filtragem também é feita por endereço, ou seja, se um usuário marca a mensagem de um emissor como spam várias vezes, próximas mensagens enviadas por esse endereço irão para a caixa de spam automaticamente, como um filtro por distribuição de blacklist.
+
+		A eficácia do filtro pode ser vista na Figura \ref{gmail:chart}.
+
+		\begin{figure*}[ht]
+			\centering
+			\includegraphics[height=5cm]{Imagens/gmail/spamchart.png}
+			\caption{Percentual de filtragem ao longo dos anos}
+			\label{gmail:chart}
+		\end{figure*}
+		
 
 \section{Casos Reais}
 
