@@ -21,31 +21,31 @@
 
 \newacronym{acm}{ACM}{Association for Computing Machinery}
 \newglossaryentry{email} {
-	name={E-mail}, 
-	description={Correio eletrônico, termo usualmente utilizado para denotar a mensagem eviada por este meio.}
+	name={e-mail}, 
+	description={Correio eletrônico, termo usualmente utilizado para denotar a mensagem eviada por este meio}
 }
 \newglossaryentry{cabecalho} {
 	name={cabeçalho}, 
-	description={Parte do e-mail que contem informações suplementares de transmissão. Entre seus campos, são encontrados endereço do emissor, endereço do receptor, endereço de resposta, data de emissão, tipo do conteúdo e assunto.}
+	description={Parte do e-mail que contem informações suplementares de transmissão. Entre seus campos, são encontrados endereço do emissor, endereço do receptor, endereço de resposta, data de emissão, tipo do conteúdo e assunto}
 }
 \newglossaryentry{falsopos} {
 	name={falso-positivo}, 
 	description={Classificação errônea na qual, para este contexto, um e-mail legítimo é classificado como spam}
 }
 \newglossaryentry{captcha} {
-	name={CAPTCHA}, description={\emph{Completely Automated Public Turing test to tell Computers and Humans Apart}. Teste criado para diferenciar seres humanos de máquinas. Consiste em imagens de mensagens distorcidas para evitar a interpretação automática por máquinas.}
+	name={CAPTCHA}, description={\emph{Completely Automated Public Turing test to tell Computers and Humans Apart}. Teste criado para diferenciar seres humanos de máquinas. Consiste em imagens de mensagens distorcidas para evitar a interpretação automática por máquinas}
 }
 \newglossaryentry{spambot} {
 	name={spambot},
-	description={Bot projetado para enviar spam de forma massiva, automaticamente.}
+	description={Bot projetado para enviar spam de forma massiva, automaticamente}
 }
 \newglossaryentry{bot} {
 	name={bot}, 
-	description={Softwares criados para realizar alguma tarefa de forma automatizada.}
+	description={Softwares criados para realizar alguma tarefa de forma automatizada}
 }
 \newglossaryentry{cadmarkov} {
 	name={Cadeia de Markov},
-	description={Conjunto de estados no qual um processo ocorre. O processo inicia em um estado e se move sucessivamente, transicionando entre estados, a cada passo. O estado para o qual o processo se move depende unicamente, de forma probabilística, do estado em que ele se encontra atualmente.},
+	description={Conjunto de estados no qual um processo ocorre. O processo inicia em um estado e se move sucessivamente, transicionando entre estados, a cada passo. O estado para o qual o processo se move depende unicamente, de forma probabilística, do estado em que ele se encontra atualmente},
 	plural={Cadeias de Markov}
 	
 }
@@ -55,23 +55,23 @@
 }
 \newglossaryentry{gpl} {
 	name={\emph{GPL}, 
-	description={\emph{General Public License}. Licença para software livre.}}
+	description={\emph{General Public License}. Licença para software livre}}
 }
 \newglossaryentry{whitelist} {
 	name={whitelist}, 
-	description={Lista de endereços de e-mail de remetentes legítimos, previamente validados.}
+	description={Lista de endereços de e-mail de remetentes legítimos, previamente validados}
 }
 \newglossaryentry{blacklist} {
 	name={blacklist}, 
-	description={Lista de mensagens classificadas como spam.}
+	description={Lista de mensagens classificadas como spam}
 }
 \newglossaryentry{mta} {
 	name={MTA},
-	description={Mail Transfer Agent. Software que transfere mensagens de correio eletrônico de um cliente para outro, baseado em uma arquitetura cliente-servidor.}
+	description={Mail Transfer Agent. Software que transfere mensagens de correio eletrônico de um cliente para outro, baseado em uma arquitetura cliente-servidor}
 }
 \newglossaryentry{threshold} {
 	name={threshold}, 
-	description={Valor utilizado como limitante para uma classificação.}
+	description={Valor utilizado como limitante para uma classificação}
 }
 
 \begin{document}
@@ -84,11 +84,11 @@
 	Entretanto, a facilidade adquirida também permite o envio de milhares de mensagens eletrônicas em poucos segundos, que podem ser mensagens importantes, como um aviso de uma empresa de grande porte para seus funcionários, ou \emph{spam}, um fenômeno que cresce dia após dia.
 
 	((Mudar isso))
-	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências os usuários do correio eletrônico.
+	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências os usuários de \gls{email}.
 	Mostraremos a origem da palavra e seus usos nos dias atuais. 
 	((colocar algo como em seguida aqui)) métodos utilizados para separar mensagens importantes de spam.
 	Em seguida, alguns exemplos de como esse tipo de mensagem traz desconforto para quem o recebe. 
-	Por fim, um estudo de caso, analisando as violações dos códigos da \gls{ACM}~\cite{ACM} e a conclusão.
+	Por fim, um estudo de caso, analisando as violações dos códigos da \gls{acm}~\cite{ACM} e a conclusão.
 \end{abstract}
 
 \newpage
@@ -98,7 +98,50 @@
 
 
 \section{Introdução}
-	\begin{figure*}[ht]
+	Nesta seção será feita uma breve descrição de como o termo spam (para falar de mensagens indesejadas) foi originado, seguida de ((blablabla)).
+
+	\subsection{Origem do termo}
+		A aparição da palavra Spam que originou sua utilização atual ocorreu no episódio 12 da segunda temporada de uma série britânica de comédia chamada \emph{Monty Python's Flying Circus}. 
+		Spam é uma mistura de carnes de porco apimentadas e enlatadas, vindo de \emph{SPiced hAM} (Figura \ref{fig:spam}), criado pela empresa estadunidense \emph{Hormel Foods Corporation}.
+
+		Durante o episódio, personagens discutem sobre o cardápio de um café. 
+		A carne enlatada é um ingrediente presente em todos os pratos do estabelecimento, sendo considerada algo indesejável por um dos personagens, e, durante a discussão, "Spam" foi dito mais de 50 vezes em menos de 4 minutos.
+
+		Apesar de não se saber ao certo quando o termo começou a ser utilizado para denotar mensagens indesejadas, atualmente ele é vastamente utilizado, principalmente para  se referir a e-mails de propagandas inconvenientes.
+		
+		\begin{figure}[ht]
+			\centering
+			\includegraphics [height=5cm]{Imagens/spam/spam.png}
+			\caption{Lata de presunto apimentado enlatado}
+			\label{fig:spam}
+		\end{figure}
+
+	\subsection{Spam ((na atualidade))}
+		A empresa especializada em segurança \emph{M86 Security Labs}~\cite{m86} separa spam em 13 categorias listadas abaixo:
+		\begin{description}
+			\item [Fraude] Seu objetivo é fazer o destinatário acreditar que ganhou algo, como um prêmio.
+			\item [Adulto] Possui conteúdo pornográfico e oferece cadastro gratuito a \emph{sites} adultos ou a serviços de acompanhantes.
+			\item [Financeiro] É relacionado a financiamentos e oferecimento de crédito falso.
+			\item [Ações] Anuncia ações de empresas para causar o aumento do preço das mesmas.
+			\item [Farmacêuticas] Informa sobre vários tipos de drogas e remédios, geralmente promete uma pele melhor, mais energia, perda de peso, entre outros. 
+			Como um exemplo, tem-se o Viagra.
+			\item [Phishing] Tenta imitar e-mails legítimos enviados por empresas para conseguir dados e/ou credenciais de seus clientes.
+			Seus alvos mais populares são bancos, \emph{eBay} e \emph{PayPal}.
+			\item [Diplomas] Anuncia qualificações como diplomas de universidades ou cursos de treinamento.
+			\item [Réplicas] Anuncia imitações baratas de produtos como bolsas, relógios e celulares.
+			\item [Software] Anuncia softwares baratos, usualmente prometendo venda de softwares \gls{oem}.
+			\item [Malware] Contem anexos maliciosos ou \emph{links} que levam a \emph{websites} com vírus.
+			\item [Jogos de azar] Promove cassinos ou \emph{sites} de pôquer, que geralmente oferecem bônus por cadastramento.
+			\item [Relacionamento] Podem ser incluídos na categoria de fraudes, em que mulheres ou homens que fingem ser mulher tentam criar um relacionamento para extorquir dinheiro.
+			\item [Outros] Não são classificados nas categorias supracitadas.
+		\end{itemize}
+
+		Dentro dessas classes, 
+
+		Segundo , $72.7\%$ dos e-mails recebidos são spam e $56\%$ dessas mensagens são farmacêuticas.
+		A distribuição de emissores de spam pelo mundo pode ser vista na Figura \ref{fig:spamworld}.
+
+	\begin{figure}[ht]
 		\begin{subfigure}[b]{\textwidth}
 			\centering
 			\includegraphics[height=5cm]{Imagens/m86security/spam-country-map.png}
@@ -118,12 +161,12 @@
 		\end{subfigure}
 		\caption{Emissão de spam no mundo}
 		\label{fig:spamworld}
-	\end{figure*}
+	\end{figure}
 
 \section{Filtros de Spam}
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
-	Algumas se baseiam no \gls{cabeçalho} da mensagem, outras na frequência das palavras utilizadas.
+	Algumas se baseiam no \gls{cabecalho} da mensagem, outras na frequência das palavras utilizadas.
 	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}((citar?)).
 
 	\subsection{Filtro baseado na estrutura do texto}
@@ -141,7 +184,7 @@
 		Uma abordagem mais agressiva para a filtragem de spam é a utilização de \emph{Whitelist} em conjunto com a verificação automática.
 
 		Qualquer endereço que esteja nesta \emph{whitelist} tem sua mensagem enviada sem maiores problemas.
-		Caso o endereço não esteja contido na lista, o \emph{MTA} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
+		Caso o endereço não esteja contido na lista, o \emph{\gls{mta}} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
 
 		Como a maioria das mensagens de spam possui endereços de resposta falsos, as instruções não seriam seguidas e o e-mail não chegaria à caixa de entrada do destinatário.
 		Caso o \emph{spammer} decida fazer o que lhe foi dito, ele será adicionado à lista, porém isso o torna mais facilmente rastreável.
@@ -203,7 +246,7 @@
 
 		\begin{figure*}[ht]
 			\centering
-			\includegraphics[height=5cm]{Imagens/gmail/spamchart.png}
+			\includegraphics[height=7cm]{Imagens/gmail/spamchart.png}
 			\caption{Percentual de filtragem ao longo dos anos}
 			\label{gmail:chart}
 		\end{figure*}
@@ -218,9 +261,11 @@
 
 \section{Conclusão}
 
+\newpage
 \printglossaries
 \addcontentsline{toc}{section}{Glossário}
 
+\newpage
 \bibliography{refs}
 \bibliographystyle{acm}
 \addcontentsline{toc}{section}{Referências}
