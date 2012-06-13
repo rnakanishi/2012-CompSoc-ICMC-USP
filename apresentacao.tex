@@ -3,8 +3,12 @@
 \usepackage[brazil]{babel}
 \usepackage{graphics}
 \usepackage{graphicx}
+\usepackage{color}
 \usepackage{cite}
 \usepackage{url}
+\usepackage{array}
+\usepackage{multirow}
+
 
 \usetheme{Warsaw}
 \setbeamertemplate{footline}[frame number]
@@ -18,9 +22,13 @@
 \AtBeginSection[]
 {
  \begin{frame}<beamer>
- \tableofcontents[currentsection, hideothersubsections, 
+	\begin{scriptsize}
+ 	\tableofcontents[currentsection,hideothersubsections]
+	\end{scriptsize}
  \end{frame}
 }
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 
 \begin{document}
 
@@ -29,20 +37,20 @@
 \end{frame}
 
 \begin{frame}
-	\tableofcontents[hidecurrentsubsection, hideothersubsections]
+	\tableofcontents[hidecurrentsubsection,hideothersubsections]
 \end{frame}
 
 \section{O que é Spam}
 \begin{frame}{Origem}
 	\begin{itemize}
 		\item Sp(iced H)am, 1937
-		\item Monty Python, 1970 \cite{mpit}
+		\item Monty Python, 1970 [1]
 		\item “spam spam spam spam spam spam spam baked beans  spam spam spam and  spam”
 	\end{itemize}
 
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=5cm]{spam.png}
+		\includegraphics[width=5cm]{Imagens/spam/spam.png}
 	\end{figure}
 \end{frame}
 
@@ -62,19 +70,11 @@
 	\end{itemize}
 \end{frame}
 
-\section{Spam versus Ham}
-\begin{frame}{Spam versus Ham}
-	\begin{itemize}
-		\item Ham
-		\begin{itemize}
-			\item E-mail válido
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
 \section{Filtros de Spam}
 \begin{frame}{Filtros de Spam}
-	PLO
+	\begin{itemize}
+		\item Separar mensagens de propagandas
+	\end{itemize}
 \end{frame}
 
 \section{Estatísticas}
@@ -89,6 +89,16 @@
 \end{frame}
 
 \section{Casos reais}
+\subsection{Aviva Investors}
+\begin{frame}{Aviva Investors}
+	\begin{itemize}
+		\item Administradora de fundo de investimentos globais
+		\item E-mail de demissão enviado por engano para 1300 funcionários de 16 países
+		\linebreak
+		\item E-mail de retificação enviado 30 minutos mais tarde
+	\end{itemize}
+\end{frame}
+
 \subsection{Coxinha em promoção}
 \begin{frame}{Coxinha em promoção}
 	\begin{itemize}
@@ -102,43 +112,201 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Aviva Investors}
-\begin{frame}{Aviva Investors}
+\subsection{Amizades via spam}
+\begin{frame}{Amizades via spam}
 	\begin{itemize}
-		\item PLO
+		\item Início em 29 de fevereiro
+		\item Um grupo de pessoas recebia e-mails
+		\begin{itemize}
+			\item Ao clicar em "responder", mesmo que apenas para o remetente, a mensagem era encaminhada para o grupo
+		\end{itemize}
+		\item Várias pessoas mandaram mensagens pedido, mandando e obrigando a tirá-los da lista de e-mails
+		\begin{itemize}
+			\item Sr. Clark chegou a mandar 12 mensagens em uma hora
+			\item Acabou recebendo ligações de queixas de várias pessoas
+		\end{itemize}
+		\item Starwood Hotel era um dos integrantes da lista
+		\begin{itemize}
+			\item O hotel achou que as pessoas não queriam mais receber informativos do hotel
+			\item Alguém acabou achando que a culpa era do hotel
+			\item Chegou a ocorrer ameça envolvendo polícia italiana
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
-\subsection{Starwood Hotel}
-\begin{frame}{Starwood Hotel}
+\begin{frame}{Amizades via spam}
 	\begin{itemize}
-		\item PLO
+		\item As pessoas perceberam que continuar respondendo só levaria a manter o ciclo de spam
+		\item Um escritor de London sugeriu sairem para se encontrar, depois dessa onda de e-mails enviados
+		\item Várias pessoas aderiram
+		\item Grupo no \emph{LinkedIn}
+		\begin{itemize}
+			\item \emph{Unified by spam - the Social Experiment}
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \section{Estudo de caso}
+\subsection{Apresentação do caso}
 \begin{frame}{Estudo de caso}
+\begin{itemize}
+	\item Baseado em fatos
+	\item Juliano
+	\begin{itemize}
+		\item Professor de uma Universidade renomada
+		\item Ministra determinada disciplina num determinado semestre
+	\end{itemize}
+	\item Eduardo
+	\begin{itemize}
+		\item Pós-graduando sobre tutoria de Juliano
+		\item Iminência de defender o mestrado
+		\item Auxilia Juliano com a disciplina
+	\end{itemize}
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Estudo de caso}
+\begin{itemize}
+	\item Média final da disciplina composta por projetos e nenhuma prova
+	\begin{itemize}
+		\item Projetos lançados ao longo do semestre
+	\end{itemize}
+	\item Testes são necessários pra comprovar eficiência e são realizados em máquinas específicas
+	\item Máquina compartilhadas
+	\begin{itemize}
+		\item Flutuação do resultado
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Estudo de caso}
+	\begin{itemize}
+		\item Alocação dos recursos feito pelo professor
+		\begin{itemize}
+			\item Horários não levavam em conta disponibilidade dos alunos
+			\item Grupos não conseguiram terminar os testes
+			\item Vários e-mails pedindo nova alocação
+		\end{itemize}
+		\item Juliano pede a Eduardo para mandar e-mails para os alunos avisando sobre as mudanças
+		\item Eduardo faz o que foi pedido, mas percebe que ainda haverá várias mudanças
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Estudo de caso}
+\begin{itemize}
+	\item O \emph{site} da disciplina poderia ser usado para avisar sobre as mudanças
+	\begin{itemize}
+		\item Apenas Juliano possuía acesso para realizar alterações
+	\end{itemize}
+	\item Os e-mails de modificações poderia ser mandado apenas para os grupos afetados
+	\item Eduardo avisa Juliano que mandar a todos se trataria de um spam
+	\begin{itemize}
+		\item Juliano diz ser irrelevante
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 \subsection{Códigos da ACM violados}
 \begin{frame}{Códigos da ACM violados}
+		\begin{itemize}
+			\item ``Contribuir para o bem-estar humano e da Sociedade''\\
+				
+			\item ``Procurar alcançar a maior qualidade, eficácia de dignidade tanto nos processos como nos produtos do trabalho profissional''\\
+				
+			\item ``Adquirir e manter competência profissional''\\
+				
+		\end{itemize}
 \end{frame}
 
-\subsection{Tabela de benefícios}
+\subsection{Obrigações, benefícios e vulnerabilidades}
+\begin{frame}{Tabela de Obrigações}
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{@{\extracolsep{\fill}} l C{0.2\textwidth} C{0.2\textwidth} C{0.2\textwidth}}
+			\hline
+								&	\textbf{Juliano}		&	\textbf{Eduardo}	&	\textbf{Alunos}\\	
+			\hline
+			\textbf{Juliano}	&	Pesquisar	&	Orientar para a docência	&	Passar conhecimento\\
+			\hline
+			\textbf{Eduardo}	&	Obedecer \linebreak \linebreak Auxiliar na disciplina	&	Prezar pela pós-graduação	&	Avisar sobre mudanças\\
+			\hline
+			\textbf{Alunos}	&	Ser aprovado na disciplina	&			&	Manter boas notas\\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
+
 \begin{frame}{Tabela de benefícios}
+	\begin{tiny}
+	\centering
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{@{\extracolsep{\fill}}C{0.17\textwidth}  C{0.17\textwidth} C{0.17\textwidth} C{0.17\textwidth} C{0.17\textwidth} C{0.17\textwidth}}
+				\hline
+				 & \textbf{Insistir para Juliano modificar no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar todas as modificações de uma vez}\\
+				\hline
+				Alunos interessados & Não receberão nenhum e-mail \linebreak \linebreak Serão notificados & Serão notificados & Serão notificados & Receberão menos e-mails \linebreak \linebreak Serão notificados\\
+				\hline
+				Alunos não interessados & Não receberão nenhum spam & Não receberão nenhum spam &  & Receberão menos e-mails\\
+				\hline
+				Eduardo & Não precisa enviar os e-mails & & & Envia menos e-mails \\
+				\hline
+				Juliano & & Não envia e-mails & Não envia e-mails & Não envia e-mails \\
+				\hline
+			\end{tabular}
+		\end{table}
+	\end{tiny}
 \end{frame}
 
-\subsection{Tabela de vulnerabilidades}
 \begin{frame}{Tabela de vulnerabilidades}
+	\begin{tiny}
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{@{\extracolsep{\fill}}C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth}}
+				\hline
+				& \textbf{Insistir para Juliano modificar o documento no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar todas as modificações de uma vez}\\
+				\hline
+				Alunos interessados & & & Recebe spam & Recebe spam \\
+				\hline
+				Alunos não interessados & & & Recebe spam & Recebe spam \\
+				\hline
+				Eduardo & & Envia e-mails & Envia e-mails & Envia e-mails \\
+				\hline
+				Juliano & Precisa modificar o documento & & &\\
+				\hline
+			\end{tabular}
+		\end{table}
+	\end{tiny}
 \end{frame}
 
-\subsection{Tabela de PLO}
-\begin{frame}{Tabela de PLO}
+\begin{frame}{Tabela de obrigações afetadas}
+	\begin{tiny}
+		\begin{table}
+			\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{0.08\textwidth} | C{0.08\textwidth} C{0.08\textwidth} C{0.115\textwidth} C{0.115\textwidth} C{0.115\textwidth} C{0.115\textwidth}}
+				\cline{2-7}
+				& & & \textbf{Insistir para Juliano modificar no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar todas as modificações de uma vez}\\
+				\hline
+				\multirow{3}{*}{Eduardo}  & Para ele mesmo & Prezar pela pós-graduação & - - & - - & - & - \\
+				\cline{2-7}
+						& Juliano & Obedecer & - & + & + + & + \\
+				\cline{2-7}
+						& Alunos & Notificar & + - & + & + & + \\
+				\hline
+				Juliano & Para ele mesmo & Pesquisar & - - &  &  & \\
+				\hline
+			\end{tabular*}
+		\end{table}	
+	\end{tiny}
 \end{frame}
 
 \subsection{Decisão consensual}
 \begin{frame}{Decisão consensual}
+	\begin{itemize}
+		\item Eduardo tentar convencer Juliano a atualizar o site.
+		\begin{itemize}
+			\item Se a relação com o orientador ficar ruim, mandar as notivficações em blocos
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 
@@ -161,7 +329,7 @@
 \section{Referências}
 \begin{frame}{Referências}
 	\begin{itemize}
-		\item Monty Python, \emph{Spam}, 1970, \url{http://www.youtube.com/watch?v=anwy2MPT5RE}
+		\item [1] Monty Python, \emph{Spam}, 1970, \url{http://www.youtube.com/watch?v=anwy2MPT5RE} 
 	\end{itemize}
 \end{frame}
 
