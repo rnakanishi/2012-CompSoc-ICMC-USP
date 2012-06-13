@@ -21,7 +21,10 @@
 
 \makeglossaries
 
-\newacronym{acm}{ACM}{Association for Computing Machinery}
+\newglossaryentry{acm} {
+	name={ACM},
+	description={Association for Computing Machinery}
+}
 \newglossaryentry{blacklist} {
 	name={\emph{blacklist}}, 
 	description={Lista de mensagens classificadas como spam}
@@ -55,6 +58,10 @@
 	name={falso-positivo}, 
 	description={Classificação errônea na qual, para este contexto, um e-mail legítimo é classificado como spam}
 }
+\newglossaryentry{OCR} {
+	name={OCR},
+	description={\emph{Optical Character Recognition}. Tecnologia criada para reconhecer caracteres a partir de uma imagem. Utilizado na digitalização de livros}
+}
 \newglossaryentry{gpl} {
 	name={GPL}, 
 	description={\emph{General Public License}. Licença para software livre}
@@ -63,9 +70,17 @@
 	name=\emph{link},
 	description={Conexão que leva de uma página da \emph{Web} a, possivelmente, outra}
 }
+\newglossaryentry{listserv} {
+	name=\emph{listserv},
+	description={Softwares que permitem a inserção de endereços de e-mail em uma lista e o envio de e-mails para a lista de forma transparente}
+}
 \newglossaryentry{malware} {
 	name={\emph{malware}},
 	description={\emph{Malicious Software}. Software destinado a infectar um sistema, com o intuito de causar algum dano ou roubar informações}
+}
+\newglossaryentry{mime} {
+	name={MIME},
+	description={\emph{Multipurpose Internet Mail Extensions}. Padrão que define os tipos de mídia utilizados na Internet e extende o formato do e-mail para aceitar, entre outros, recursos multimídia}
 }
 \newglossaryentry{mta} {
 	name={MTA},
@@ -81,15 +96,23 @@
 	plural={redes zumbi}
 }
 \newglossaryentry{spambot} {
-	name={\emph{spambot}},
+	name=\emph{spambot},
 	description={\Gls{bot} projetado para enviar spam de forma massiva, automaticamente}
 }
+\newglossaryentry{spammer} {
+	name=\emph{spammer},
+	description={Emissor de spam}
+}
 \newglossaryentry{threshold} {
-	name={\emph{threshold}}, 
+	name=\emph{threshold}, 
 	description={Valor utilizado como limitante para uma classificação}
 }
+\newglossaryentry{trigger} {
+	name=\emph{trigger},
+	description={Mecanismo executado ao ser acionado por um evento. Também chamado de ``gatilho''}
+}
 \newglossaryentry{whitelist} {
-	name={\emph{whitelist}}, 
+	name=\emph{whitelist}, 
 	description={Lista de endereços de e-mail de remetentes legítimos, previamente validados}
 }
 
@@ -109,7 +132,7 @@
 
 		{\large Bianca Madoka Shimizu Oe\\
 		Gustavo Shinji Inoue\\
-		Rafael Umino Nakanishi\\
+		Rafael Umino Nakanishi\\}
 
 	\vfill
 	\today
@@ -117,12 +140,6 @@
 
 \end{titlepage}
 
-%\newpage
-
-
-\newpage
-
-\tableofcontents
 \newpage
 
 \begin{abstract}
@@ -130,25 +147,31 @@
 
 	Entretanto, a facilidade adquirida também permite o envio de milhares de mensagens eletrônicas em poucos segundos, que podem ser mensagens importantes, como um aviso de uma empresa de grande porte para seus funcionários, ou \emph{spam}, um fenômeno que cresce cada vez mais.
 
-	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências os usuários de \gls{email}.
+	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências para usuários de \gls{email}.
 	Mostraremos a origem da palavra e seus usos nos dias atuais, sua situação no mundo e estatísticas.
-	Depois, mostraremos métodos utilizados por provedores de e-mail para separar mensagens importantes de spam.
+	Depois, apresentaremos métodos utilizados por provedores de e-mail para separar mensagens importantes de spam.
 	Em seguida, alguns exemplos de como esse tipo de mensagem traz desconforto para quem o recebe. 
-	Por fim, um estudo de caso, analisando as violações dos códigos da \gls{acm}~\cite{ACM} e a conclusão.
+	Por fim, um estudo de caso, analisando as violações dos códigos da \gls{acm}~\cite{acm} e a conclusão.
 	
-	Os termos desconhecidos podem ter seus signifcados buscados no glossário, presente no fim desta monografia.
+	Os termos desconhecidos podem ter seus significados buscados no glossário, presente no fim desta monografia.
 \end{abstract}
+
+\newpage
+
+\tableofcontents
+\newpage
 
 \section{Introdução}
 	Nesta seção será feita uma breve descrição de como a palavra ``spam'' começou a ser utilizada para descrever e-mails indesejados.
 	Em seguida, serão apresentados alguns fatos relacionados a este tipo de mensagem, considerando o Brasil e o mundo.
 
 	\subsection{Origem do termo}
-		A aparição da palavra Spam que originou sua utilização atual ocorreu no episódio 12 da segunda temporada de uma série britânica de comédia chamada \emph{Monty Python's Flying Circus}~\cite{montyPython:fc, mpyt}. 
-		Spam é uma mistura de carnes de porco apimentadas e enlatadas, vindo de \emph{SPiced hAM} (Figura \ref{fig:spam}), criado pela empresa estadunidense \emph{Hormel Foods Corporation}.
+		A aparição da palavra Spam, que originou sua utilização atual, ocorreu no episódio 12 da segunda temporada de uma série britânica de comédia chamada \emph{Monty Python's Flying Circus}~\cite{montyPython:fc, mpyt}. 
+		Spam é uma mistura de carnes de porco condimentadas e enlatadas, vindo de \emph{SPiced hAM} (Figura \ref{fig:spam}), criada pela empresa estadunidense \emph{Hormel Foods Corporation}.
 
 		Durante o episódio, personagens discutem sobre o cardápio de um café. 
-		A carne enlatada é um ingrediente presente em todos os pratos do estabelecimento, sendo considerada algo indesejável por um dos personagens, e, durante a discussão, ``Spam'' foi dito mais de 50 vezes em menos de 4 minutos.
+		A carne enlatada é um ingrediente presente em todos os pratos do estabelecimento, sendo considerada algo indesejável por um dos personagens. 
+		Durante a discussão, ``Spam'' foi dito mais de 50 vezes em menos de 4 minutos.
 
 		Apesar de não se saber ao certo quando o termo começou a ser utilizado para denotar mensagens indesejadas, atualmente ele é vastamente utilizado, principalmente para  se referir a e-mails de propagandas inconvenientes.
 		
@@ -160,6 +183,8 @@
 		\end{figure}
 
 	\subsection{Spam no mundo}
+		A partir desta subseção, o termo spam será usado para denotar e-mail indesejado.
+		
 		A empresa especializada em segurança \emph{M86 Security Labs} separa spam em 13 categorias listadas abaixo~\cite{spam:m86-type}:
 		\begin{description}
 			\item [Fraude] Seu objetivo é fazer o destinatário acreditar que ganhou algo, como um prêmio.
@@ -194,7 +219,7 @@
 		\begin{subfigure}[b]{\textwidth}
 			\centering
 			\includegraphics[height=5cm]{Imagens/m86security/spam-country-map.png}
-			\caption{Mapa-múndi de emissores de spam}
+			\caption{Mapa-múndi de emissores de spam. Cores mais escuras indicam maior emissão.}
 		\end{subfigure}
 		~
 		\begin{subfigure}[b]{0.47\textwidth}
@@ -219,79 +244,108 @@
 		\label{fig:spambrasil}
 	\end{figure}
 	
-	Como se pode ver, no Brasil, os estados que mais emitem de spam são o estado de São Paulo e o Rio de Janeiro, o que condiz com o fato de que são os pólos tecnológicos do país.
+	Como se pode ver, no Brasil, os estados que mais emitem spam são o estado de São Paulo e o Rio de Janeiro, o que condiz com o fato de que são os pólos tecnológicos do país.
 
 	Já no âmbito global, a regra não pode ser generalizada, por ser uma questão que não depende somente do aspecto tecnológico, mas também do econômico e cultural.
 
 	Pode-se tomar como exemplo a Índia, que segundo o mapa da empresa M86 Security Labs e de outra empresa de segurança chamada Sophos~\cite{sophos} é o país que mais envia mensagens ilegítimas no mundo.
 	O grande aumento na quantidade de spam produzido foi, em parte, causado pela expansão rápida de redes com acesso à Internet no país.
 
-	Segundo um consultor na Sophos, a inexperiência de muitos usuários de primeira viagem os levou a serem vítimas de criminosos virtuais, pois a maioria não toma medidas para bloquear infecções por \gls{malware}, adicionando seus computadores em \glspl{redezumbi}~\cite{spam:india}. 
+	Segundo um consultor na Sophos, a inexperiência de muitos usuários de primeira viagem os levou a serem vítimas de criminosos virtuais, pois a maioria não toma medidas para bloquear infecções por \gls{malware}, adicionando seus computadores a enormes \glspl{redezumbi}~\cite{spam:india}, que acarreta no aumento das mensagens enviadas. 
 
 \newpage
 \section {Estatísticas}
-	Abaixo são mostrados dados estatísticos sobre o percentual de spam e seu crescimento nos últimos anos, assim como algumas curiosidades.
+	Nesta seção são mostrados dados estatísticos sobre o percentual de spam e seu crescimento nos últimos anos, assim como algumas curiosidades.
 	
-	Na Figura \ref{fig:spambar} estão contidos dados sobre a quantidade de spam, dividida nas categorias abaixo para o ano fiscal de 2011 a 2012~\cite{spam:stats}.
-	\begin{itemize}
-		\item Spam confirmado, representado nos gráficos como \emph{Positive Spam};
-		\item Mensagem suspeita, representada nos gráficos \emph{Suspected Spam};
-		\item Mensagen legítima, representada nos gráficos como \emph{Legitimate Messages};
-		\item Marketing.
-	\end{itemize}
+	\vspace{10pt}
+	\begin{enumerate}
+		\item
+			Na Figura \ref{fig:spambar} estão contidos dados sobre a quantidade de spam, dividida nas categorias abaixo para o ano fiscal de 2011 a 2012~\cite{spam:stats}.
+		\begin{itemize}
+			\item Spam confirmado, representado nos gráficos como \emph{Positive Spam};
+			\item Mensagem suspeita, representada nos gráficos \emph{Suspected Spam};
+			\item Mensagen legítima, representada nos gráficos como \emph{Legitimate Messages};
+			\item Marketing.
+		\end{itemize}
 	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[height=7cm]{Imagens/spam/2ndQtr-FY2011-12.jpg}
-		\caption{Quantidade de spam de 2011 a 2012}
-		\label{fig:spambar}
-	\end{figure}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[height=7cm]{Imagens/spam/2ndQtr-FY2011-12.jpg}
+			\caption{Quantidade de spam de 2011 a 2012}
+			\label{fig:spambar}
+		\end{figure}
 	
-	Em abril de 2012, o sistema antispam \emph{IronPort Antispam System} processou 14.856.078 mensagens de e-mail, das quais 13.158.245 foram identificadas como spam, 10.151 foram classificadas como suspeitas e 419.407 como marketing, acumulando um total de 13.168.396 ($88.6\%$) de spam~\cite{spam:stats}.
-	Os dados podem ser visualizados no gráfico da Figura \ref{fig:spampizza}.
+	\item
+		Em abril de 2012, o sistema antispam \emph{IronPort Antispam System} processou 14.856.078 mensagens de e-mail, das quais 13.158.245 foram identificadas como spam, 10.151 foram classificadas como suspeitas e 419.407 como marketing, acumulando um total de 13.168.396 ($88.6\%$) de spam~\cite{spam:stats}.
+		Os dados podem ser visualizados no gráfico da Figura \ref{fig:spampizza}.
 	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[width=7cm]{Imagens/spam/Apr2012-Spam.jpg}
-		\caption{Quantidade de spam nas mensagens processadas em abril}
-		\label{fig:spampizza}
-	\end{figure}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=7cm]{Imagens/spam/Apr2012-Spam.jpg}
+			\caption{Quantidade de spam nas mensagens processadas em abril}
+			\label{fig:spampizza}
+		\end{figure}
 	
+	\item
+		Foi feito um experimento com os softwares antispam \emph{Cloudmark}~\cite{cloudmark}, \emph{Barracuda}~\cite{barracuda} e \emph{SpamAssassin}~\cite{spamassassin} para descobrir quais são os \glspl{trigger} mais comuns para os filtros de spam dos programas supracitados~\cite{spam:trigger}.
+		Alguns dos resultados obtidos são mostrados abaixo.
+		\begin{itemize}
+			\item Mensagem possui pouco texto em comparação à área ocupada por imagens;
+			\item Mensagem só possui tipos \gls{mime};
+			\item Assunto está completamente em maiúsculo;
+			\item Utilização da frase ``extra inches'', traduzida como ``polegadas extra'';
+			\item Utilização da frase ``You registered with a partner'', traduzida como ``Você se registrou com um companheiro''.
+		\end{itemize}
 	
+	\item
+		As palavras mais frequentes em mensagem de spam, segundo a empresa de segurança \emph{Symantec}, dependem do \emph{spambot} que envia a mensagem, já que cada um tem uma função específica~\cite{spam:words}.
+		Algumas dessas palavras podem ser vistas nas Figura \ref{fig:wordlist}.
+	
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[height=7cm]{Imagens/spam/words-shipping.jpg}
+			\caption{Palavras populares em spam}
+			\label{fig:wordlist}
+		\end{figure}
+	
+		Como se pode perceber, é comum a utilização do ponto de exclamação, pois, segundo Daren Lewis, empregado da empresa, os \glspl{spammer} criam uma sensação de urgência na mensagem, já que quanto menos tempo pessoas pensam sobre o que está escrito, menos elas percebem que é uma farsa.
+	\end{enumerate}
 	
 \newpage
+
 \section{Filtros de Spam}
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
 	Algumas se baseiam no \gls{cabecalho} da mensagem, outras na frequência das palavras utilizadas.
-	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}((citar?))~\cite{filtros, gmail:youtube, gmail:fightspam}.
+	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}~\cite{filtros, gmail:youtube, gmail:fightspam}.
 
 	\subsection{Filtro baseado na estrutura do texto}
 		Este tipo de filtro se baseia em cadeias específicas do cabeçalho do e-mail, como, por exemplo, a língua na qual foi escrito e o tipo do conteúdo da mensagem.
 
-		Estes filtros podem ser facilmente criados pelos próprios usuários em grandes servidores de e-mail, e tem como objetivo não só detectar spam, mas também separar mensagens relevantes em categorias.
+		Estes filtros são utilizados pela grande maioria dos provedores do serviço de correio eletrônico e de softwares criados para filtrar mensagens.
 
-		A vantagem desta estratégia é o alto nível de personalização permitido, já que cada usuário pode criar seu próprio filtro dependendo do tipo de spam recebido. 
-		Além disso, a probabilidade de haver falsos-positivos é menor, já que é o próprio usuário que escolhe os parâmetros de filtragem.
-		
-		Sua desvantagem é a possível necessidade de criação de vários filtros para se obter uma separação eficaz.
+		Sua grande vantagem é não precisar de dados de alto nível, como a informação semântica da mensagem, para poder separar os e-mails.
+
+		Deve ser tomado um certo cuidado em relação a este filtro, pois, como foi mostrado na seção anterior, alguns dos métodos utilizados para este tipo de filtragem são subjetivos, como, por exemplo, a taxa entre imagens e texto.
+		Por isso, ele deve ser utilizado em conjunto com outros tipos de filtros, que serão descritos a seguir.
 
 
 	\subsection{\emph{Whitelist}/Verificação}
 		Uma abordagem mais agressiva para a filtragem de spam é a utilização de \glspl{whitelist} em conjunto com a verificação automática.
 
 		Qualquer endereço que esteja nesta \emph{whitelist} tem sua mensagem enviada sem maiores problemas.
-		Caso o endereço não esteja contido na lista, o \gls{mta} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
+		Se o endereço não estiver contido na lista, o \gls{mta} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
 
 		Como a maioria das mensagens de spam possui endereços de resposta falsos, as instruções não seriam seguidas e o e-mail não chegaria à caixa de entrada do destinatário.
 		Caso o \emph{spammer} decida fazer o que lhe foi dito, ele será adicionado à lista, porém isso o torna mais facilmente rastreável.
 		
 		Apesar de ser uma maneira eficaz de diminuir os spams, ela pode prejudicar usuários legítimos que não podem ou querem atender a essa exigência, já que isso implicaria no não recebimento de sua mensagem.
-
+		Logo, a forma de validação do endereço deve ser ponderada para que não seja fácil demais, permitindo a validação automatizada, nem difícil demais, impedindo usuários legítimos de utilizarem o correio eletrônico.
+		
 		Como um exemplo deste tipo de abordagem, tem-se o \emph{Corlive.com}~\cite{corlive}, que é um servidor de e-mail que utiliza \gls{captcha}~\cite{captcha} para validar os e-mails enviados e não permitir que \emph{bots} enviem spam.
 
 	\subsection{Distribuição adaptativa de \emph{blacklist}}
-		A \gls{blacklist} é formada por mensagens que foram classificadas como spam por usuários ou mesmo por endereços especiamente criados por servidores para atrair spam.
+		A \gls{blacklist} é formada por mensagens que foram classificadas como spam por usuários ou por ``honeypots'', que são endereços especiamente criados por servidores para atrair spam.
 
 		Ao receber uma mensagem, o MTA utiliza um filtro por \emph{blacklist} para determinar se mesma é um spam conhecido, e ela só é enviada à caixa de entrada do destinatário caso ela não seja classificada como ilegítima.
 
@@ -304,12 +358,12 @@
 		Um exemplo de software que implementa esta abordagem é o \emph{Pyzor}~\cite{pyzor}, um software implementado em \emph{Python} sob a licença \gls{gpl}.
 
 	\subsection{Ranking baseado em regras}
-		Este filtro possui regras de ranking, principalmente expressões regulares, e tenta fazer correspondências entre o padrão e a mensagem. 
-		Cada equivalência adiciona ou diminui pontos da mensagem.
+		Este filtro possui regras para pontuar mensagens, que são formadas principalmente por expressões regulares, e tenta fazer correspondências entre o padrão e a mensagem.
+		Cada equivalência adiciona ou diminui pontos da mensagem, que são guardados para posterior avaliação.
 		
-		Se a quantidade de pontos do e-mail exceder um determinado \gls{threshold}, é classificado como spam, caso contrário, é classificado como uma mensagem legítima.
+		Se a quantidade de pontos do e-mail exceder um determinado \gls{threshold}, a mensagem é classificada como spam, caso contrário, é classificada como legítima.
 
-		A dificuldade deste tipo de filtro é que, apesar de existirem regras que são contantes com o decorrer do tempo, como endereço de resposta falso ou áudio como tipo de conteúdo, há outras que mudam com o tempo, como os produtos dos quais os spams fazem propaganda, e isso causa a necessidade constante de atualização das regras.
+		A dificuldade deste tipo de filtro é que, apesar de existirem regras que são constantes com o decorrer do tempo, como checar se o endereço de resposta é falso ou possuir áudio como tipo de conteúdo, há outras que mudam com o tempo, como os produtos dos quais os spams fazem propaganda, o que causa a necessidade constante de atualização das regras.
 
 		Um software que implementa este tipo de filtro é o \emph{SpamAssassin}~\cite{spamassassin}, um projeto open-source da \emph{Apache}.
 
@@ -320,31 +374,32 @@
 
 		Este filtro possui traz vários benefícios como ser automatizável, ou seja, não são necessárias pessoas para definir os valores de probabilidade, já que ele pode aprender, isto é, adicionar novas palavras ou modificar a probabilidade de uma palavra de acordo com a marcação de um e-mail como spam ou válido.
 
-		Além disso, sua implementação e a teoria em que se baseia são extremamente simples e sua performance é melhor que a de filtros baseados em regras.
+		Além disso, sua implementação e a teoria em que se baseia são extremamente simples e sua performance, em geral, é melhor que a de filtros baseados em regras.
 		
 		Um software que implementa o filtro Bayesiano é o \emph{SpamBayes}~\cite{spambayes}, disponível para os serviços de e-mail \emph{Gmail}, \emph{MSN Hotmail}, \emph{Yahoo! Mail}, entre outros.
 
 	\subsection{Filtro Markoviano}
 		O filtro Markoviano é um filtro estatístico baseado na teoria de \glspl{cadmarkov}~\cite{markov}, e leva em consideração a probabilidade de transição entre uma palavra e outra, ou seja, dada uma palavra, ele tenta predizer qual é a próxima.
 
-		Diferentemente do filtro Bayesiano, que é baseado em palavras independentes, o filtro Markoviano trabalha em cima de frases, e por isso, seu desempenho tende a ser maior, já que utiliza uma abordagem holística do texto.
+		Diferentemente do filtro Bayesiano, que é baseado na probabilidade de ocorrência de palavras independentes, o filtro Markoviano trabalha em cima de frases, e por isso, seu desempenho tende a ser maior, já que utiliza uma abordagem holística do texto.
 		
-	Esta estratégia é utilizada no filtro de spam \gls{crm114}~\cite{crm114}, juntamente com outras abordagens que não serão discutidas neste trabalho. Seu desempenho foi testado para diferenciar documentos japoneses confidenciais de não confidenciais, e a acurácia obtida foi maior que $99\%$ e taxa de falsos-positivos foi menor que $5.3\%$~\cite{fmarkov:japtest}.
+	Esta estratégia é utilizada no filtro de spam \gls{crm114}~\cite{crm114}, juntamente com outras abordagens que não serão discutidas nesta monografia. Seu desempenho foi testado para diferenciar documentos japoneses confidenciais de não confidenciais, e a acurácia obtida foi maior que $99\%$ e taxa de falsos-positivos foi menor que $5.3\%$~\cite{fmarkov:japtest}.
 
 	\subsection{Gmail}
 		Uma das técnicas utilizadas pelo provedor de serviço de correio eletrônico \emph{Gmail} é o aprendizado baseado em instâncias, chamado pelo provedor de \emph{Community clicks}, em que os filtros de spam usados para todos os usuários são modificados a cada mensagem que um usuário marca como spam ou como mensagem legítima~\cite{gmail:fightspam}.
 
-		Outra técnica é o aprendizado de máquina usado para combinar e indexar os conjuntos de busca do buscador Google, que permite a junção de vários fatores para identificar mensagens semelhantes e classificá-las como spam.
-		Além disso, são aplicadas ferramentas como \emph{OCR} de outro serviço da empresa, o \emph{Google Book Search}, serviço de busca em livros (podem ser imagens), para identificar spams em forma de imagens~\cite{gmail:youtube}.
+		Outra técnica é o aprendizado de máquina usado para combinar e indexar os conjuntos de busca do buscador Google, que permite a junção de vários fatores para identificar mensagens semelhantes e classificá-las como spam, como um filtro por distribuição de blacklist.
+		
+		Além disso, são aplicadas ferramentas como \gls{OCR} de outro serviço da empresa, o \emph{Google Book Search}, serviço de busca em livros (podem ser imagens), para identificar spams em forma de imagens~\cite{gmail:youtube}.
 
-		A filtragem pode feita por endereço, ou seja, se um usuário marca a mensagem de um emissor como spam várias vezes, próximas mensagens enviadas por esse endereço irão para a caixa de spam automaticamente, como um filtro por distribuição de blacklist.
+		A filtragem pode feita por endereço, ou seja, se um usuário marca a mensagem de um emissor como spam várias vezes, próximas mensagens enviadas por esse endereço irão para a caixa de spam automaticamente.
 
-		Além disso, sempre é checado se o endereço do remetente é autenticado por meio de órgãos autenticadores para tentar impedir golpes de \emph{phishing}.
+		Em conjunto, sempre é checado se o endereço do remetente é autenticado por meio de órgãos autenticadores para tentar impedir golpes de \emph{phishing}.
 		Entretanto, não ter um certificado não é suficiente para a mensagem ser marcada como spam.
 		Esta checagem é feita como parte da filtragem e é combinada com denúncias de usuários e outras técnicas~\cite{gmail:filtros}.
 
 		O \emph{Gmail} também permite a criação personalizada de fitros de spam baseados em regras, de acordo com os seguintes campos do e-mail: remetente, destinatário, assunto e corpo da mensagem. 
-		É possível, ainda, filtrar pela presença ou ausência de palavras, utilizar operadores lógicos como \emph{e}, \emph{ou} e \emph{não}, e denotar ``qualquer um'' por meio de \emph{*}.
+		É possível, ainda, filtrar pela presença ou ausência de palavras, utilizar operadores lógicos como \emph{e}, \emph{ou} e \emph{não}, e denotar ``qualquer um'' por meio de ``\emph{*}''.
 
 		Com todo esse leque de ferramentas, a filtragem feita pelo serviço de correio eletrônico do gigante buscador é bastante interessante e a melhora de sua eficácia pode ser vista na Figura \ref{gmail:chart}.
 
@@ -360,30 +415,63 @@
 	Nas próximas subseções, são apresentados casos reais de como o spam afeta o cotidiano das pessoas.
 
 	\subsection {Coxinha na promoção}
-		A colunista Lúcia Guimarães do jornal \emph{Estadão} recebeu uma notificação de uma promoção de uma coxinha bo Boteco do Joaquim, na Cidade Baixa em Porto Alegre.
+		A colunista Lúcia Guimarães do jornal Estado de São Paulo recebeu uma notificação de uma promoção de uma coxinha bo Boteco do Joaquim, na Cidade Baixa em Porto Alegre.
 		O salgado, um espeto de ``Coxinha de Asa'', custava $R\$12,50$ e, com um desconto de aproximadamente $50\%$, passou a custar $R\$6,00$.
 
 		A notificação da promoção para Lúcia foi feita via e-mail e ela gostaria de aproveitar a promoção, se pudesse.
 		O comentário feito por Lúcia sobre o e-mail pode ser visto à seguir~\cite{cr:coxinha}.
 
-		``Foi o Boteco do Joaquim que avisou esta guria da promoção. E concluo a afirmação no tom agudo de uma interrogação, como fazem os gaúchos. Uma pena que não posso economizar $R\$ 6,50$ num almoço porque a passagem daqui para o Boteco custa $R\$ 4$ mil.''
+		\begin{quotation}
+			Foi o Boteco do Joaquim que avisou esta guria da promoção. E concluo a afirmação no tom agudo de uma interrogação, como fazem os gaúchos. Uma pena que não posso economizar $R\$ 6,50$ num almoço porque a passagem daqui para o Boteco custa $R\$ 4$ mil.
+		\end{quotation}
 
 		Como se pode perceber, a escritora não mora em Porto Alegre.
 		Na verdade, sua atual moradia é em Nova Iorque e, ainda assim, ela recebe e-mails com propagandas de coxinhas da Cidade Baixa.
-		Esse não foi o único spam com propagandas de lugares em que ela não poderia chegar, como se pode ver pelo trecho abaixo:
+		Esse não foi o único spam que recebeu com propagandas de lugares em que ela não poderia chegar, como se pode ver pelo trecho abaixo:
 
-		``Se alguma corporação estiver espionando minha correspondência eletrônica com base num algoritmo, pode montar um perfil em que: 
-		Eu como coxinha em Porto Alegre; 
-		corto o cabelo em Belo Horizonte; 
-		compro câmeras no Estado do Maine; 
-		passo os fins de semana em Búzios; 
-		encomendo pornografia do Estado de Nevada. 
-		Enfim, sou uma verdadeira cidadã do mundo, cheia de caprichos e perversões.''
+		\begin{quotation}
+			Se alguma corporação estiver espionando minha correspondência eletrônica com base num algoritmo, pode montar um perfil em que: 
+			Eu como coxinha em Porto Alegre; 
+			corto o cabelo em Belo Horizonte; 
+			compro câmeras no Estado do Maine; 
+			passo os fins de semana em Búzios; 
+			encomendo pornografia do Estado de Nevada. 
+			Enfim, sou uma verdadeira cidadã do mundo, cheia de caprichos e perversões.
+		\end{quotation}
 			
 		O que se pode concluir a partir deste caso é que o objetivo do Boteco do Joaquim foi atingido, já que a jornalista leu o e-mail e compraria a coxinha se conseguisse, porém a propaganda poderia ser enviada de forma mais inteligente somente para potenciais consumidores, categoria na qual Lúcia não se inclui.
 
-	\subsection {Spam cria amizades no mundo}
-		Um \emph{spammer} indiano enviou um e-mail escrito em 
+	\subsection {Amizades via spam}
+		Um homem indiano enviou um e-mail em um dialeto falado em parte da Índia, promovendo um \emph{site} indiano para milhares de pessoas~\cite{cr:ubs}.
+		O \emph{spammer} adicionou o endereço de e-mail de todos os seus alvos em um \gls{listserv} sem que eles soubessem e escondeu o endereço da lista entre outros endereços de e-mail.
+		
+		Um caso aparentemente ordinário se tornou fora do normal quando algumas das vítimas decidiram responder para o indiano, ordenando que ele não lhes enviasse mais spam, e, para isso, clicou em ``Responder para todos''.
+		
+		A consequência disso foi que todas as milhares de pessoas que foram vítimas do primeiro spam receberam mensagens raivosas que eram, originalmente, para o \emph{spammer}.
+		E muitas dessas pessoas também enraivecidas decidiram enviar mensagens hostis via ``Responder para todos''.
+		Houve situações extremas como o de Tim Clark e o de um hotel italiano chamado Starwood Hotel.
+		
+		Tim Clark, um homem de 42 anos, se sentiu extremamente incomodado com os e-mails recebidos e enviou a mesma mensagem, exigindo que parassem de lhe enviar esses e-mails, 12 vezes.
+		Tim não havia percebido que seus e-mails, contendo seu número para contato, estavam sendo enviados para todos e ficou surpreso quando pessoas lhe ligaram para reclamar.
+	
+		No caso do hotel italiano, um dos destinatários do spam era o seu serviço de atendimento ao consumidor, que entendeu serem pessoas que não queriam mais receber notificações do hotel.
+		A atendente respondeu, de forma educada, mas a resposta também foi enviada a todos, fazendo pessoas acreditarem erroneamente que o culpado era o hotel.
+		
+		A partir disso, houve várias ameaças de reportar para a polícia italiana e de processos, porém não houve comentário da atendente.
+		
+		O que parecia caos sem fim se tornou algo extraordinário quando Pádraig Belton, um escritor em Londres, fez a seguinte sugestão:
+		 
+		\begin{quotation}
+			Pessoalmente, eu acho que depois de tantos e-mails de vocês, nós todos deveríamos ir juntos a um \emph{pub}.
+		\end{quotation}
+		
+		Sua sugestão foi seguida de uma pessoa que disse ser do Canadá e perguntou onde era o \emph{pub}.
+		Essas iniciativas foram crescendo e chegaram no ponto em que Robert Peacock, um executivo de Londres, propôs a criação de um grupo na rede social \emph{LinkedIn} para trocarem idéias e até oportunidades de trabalho.
+	
+		No dia seguinte, foi criado o tal grupo, chamado ``Unified by Spam - the Social Experiment''~\cite{ubs}.
+		
+		O grupo possui 154 membros e hospeda várias discussões desde ofertas de trabalho a busca por contatos em outros países.
+		
 \newpage
 \section{Estudo de Caso}
 	O estudo de caso apresentado à seguir é baseado em fatos, mas não é completamente real. 
@@ -395,38 +483,52 @@
     A média final da disciplina ministrada é composta por projetos (para serem feitos em grupos) de complexidade média e por nenhuma prova.
 	Os projetos são lançados ao longo do semestre e cada um deles fica responsável por cobrir parte do conteúdo programático.
 
-	Durante a realização do projeto, é necessário fazer vários testes para comprovar a eficiência da implementação. 
+	Durante a realização do projeto, é necessário fazer vários testes para comprovar a eficiência da implementação escolhida para resolver o problema proposto. 
 	Os testes devem ser feitos em máquinas específicas fornecidas pela instituição.
 	
 	Como as máquinas são compartilhadas por todos os grupos e ocorriam testes simultâneos, havia flutuações indesejadas nos resultados obtidos.
 	Por isso, após várias reclamações, o professor decidiu alocar períodos de tempo reservados para cada grupo, de forma que outros grupos seriam penalizados caso utilizassem os recursos em um período que não fosse seu.
 
 	Foi feita uma alocação inicial, escolhida por Juliano, porém os horários não levavam em conta a disponibilidade dos alunos. 
-	Por isso, havia grupos que não estavam livres durante seu período, o que levou vários a enviarem e-mails ao professor para pedir que a alocação fosse modificada.
+	Consequentemente, havia grupos que não estavam livres durante seu período, o que levou vários a enviarem e-mails ao professor para pedir que a alocação fosse modificada.
 	Além disso, houve grupos que não conseguiram terminar seus testes na sua vez e pediram mais tempo para o professor.
 
-	Juliano decidiu atender ao pedido dos alunos e disse para Eduardo mandar um e-mail aos alunos para avisar todas as mudanças feitas.
+	Juliano decidiu atender ao pedido dos alunos e disse para Eduardo mandar-lhes um e-mail para avisar-lhes sobre as mudanças feitas.
 	
 	Eduardo fez como lhe foi dito e enviou e-mails a todos os alunos matriculados na disciplina, avisando sobre as modificações e extensões nos horários.
 	Entretanto, após alguns envios, percebeu que ainda aconteceriam várias modificações e que isso geraria uma grande quantidade de mensagens enviadas que não eram importantes para todos os alunos, como, por exemplo, os alunos que já haviam realizado os testes de forma bem sucedida.
 
 	Era possível utilizar o \emph{site} da disciplina para avisar sobre as modificações, assim como foi feito para a primeira alocação. 
-	O problema é que somente o professor poderia fazê-lo, e Juliano não parecia disposto a gastar seu tempo de pesquisa para atualizar o documento que continha os horários reservados.
+	O problema é que somente o professor poderia fazê-lo, e, quando Eduardo sugeriu esta possibilidade, Juliano não pareceu disposto a gastar seu tempo de pesquisa para atualizar o documento que continha os horários reservados.
 
 	Havia, ainda, a possibilidade de enviar o aviso somente para os grupos influenciados pela modificação, mas isso seria mais trabalhoso do que a primeira opção, já que Juliano ou Eduardo teriam que escolher para quem mandariam a mensagem.
 	
-	Eduardo sabia que se mandasse os e-mails, vários alunos ficariam insatisfeitos e isso poderia ser considerado spam e disse isso a Juliano, que respondeu ser irrelevante.
+	Eduardo sabia que se mandasse os e-mails, vários alunos ficariam insatisfeitos e isso poderia ser considerado spam e alertou Juliano, que respondeu ser irrelevante.
 
 	O orientando não queria irritar seu orientador às vésperas de sua defesa, já que isso poderia prejudicá-lo. 
 	Por outro lado, se estivesse no lugar dos alunos, se sentiria incomodado pelo spam acadêmico recebido.
 
 \newpage
-	\subsection{Dados Relevantes}
+	\subsection{Dados relevantes}
 		No caso estudado, são as partes envolvidas são:
 		\begin{itemize}
-			\item Juliano, professor, orientador de Eduardo e pesquisador da universidade;
-			\item Eduardo, mestrando, monitor da disciplina e orientando de Juliano;
-			\item Alunos que cursam a disciplina ministrada por Juliano e monitorada por Eduardo. 
+			\item Juliano
+				\begin{itemize}
+					\item Professor;
+					\item Orientador de Eduardo;
+					\item Pesquisador da universidade.
+				\end{itemize}
+			\item Eduardo
+				\begin{itemize}
+					\item Mestrando prestes a defender sua tese;
+					\item Monitor da disciplina;
+					\item Orientando de Juliano.
+				\end{itemize} 
+			\item Alunos
+				\begin{itemize}
+					\item Matriculados na disciplina ministrada por Juliano e monitorada por Eduardo;
+					\item Insatisfeitos com a quantidade de e-mails recebidos. 
+				\end{itemize}
 		\end{itemize}
 
 		As obrigações das partes envolvidas para com as outras são dadas na Tabela \ref{tab:obrig} e na Figura \ref{fig:obrig}.
@@ -460,7 +562,7 @@
 			\item Insistir para Juliano modificar o documento no \emph{site};
 			\item Enviar e-mails sobre as modificações somente para os alunos influenciados pelas mudanças feitas (componentes dos grupos);
 			\item Enviar e-mails de todas as modificações a todos os alunos matriculados;
-			\item Guardar as modificações e enviá-las somente uma vez para todos os alunos.
+			\item Guardar as modificações e enviá-las em blocos para todos os alunos.
 		\end{itemize}
 	
 	\subsection{Códigos de ética da ACM violados}
@@ -472,8 +574,8 @@
 			\item ``Procurar alcançar a maior qualidade, eficácia de dignidade tanto nos processos como nos produtos do trabalho profissional''\\
 				Se Eduardo enviar e-mails sobre as notificações, os alunos interessados, Eduardo e Juliano perderão tempo por ter que buscar as modificações em sua caixa de e-mail.
 				Além disso, Juliano corre o risco de atribuir horários inconsistentes por não possuir todas as informações de forma organizada;
-			\item ``Adquirir e manter competência profissional''\\
-				((TODO))
+%			\item ``Adquirir e manter competência profissional''\\
+%				((TODO))
 				
 		\end{itemize}
 
@@ -486,7 +588,7 @@
 			\centering
 			\begin{tabular}{@{\extracolsep{\fill}}C{0.15\textwidth}  C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth}}
 				\hline
-				 & \textbf{Insistir para Juliano modificar no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar todas as modificações de uma vez}\\
+				 & \textbf{Insistir para Juliano modificar no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar blocos de modificações}\\
 				\hline
 				Alunos interessados & Não receberão nenhum e-mail \linebreak \linebreak Serão notificados & Serão notificados & Serão notificados & Receberão menos e-mails \linebreak \linebreak Serão notificados\\
 				\hline
@@ -505,7 +607,7 @@
 			\centering
 			\begin{tabular}{@{\extracolsep{\fill}}C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth} C{0.15\textwidth}}
 				\hline
-				& \textbf{Insistir para Juliano modificar o documento no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar todas as modificações de uma vez}\\
+				& \textbf{Insistir para Juliano modificar o documento no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar blocos de modificações}\\
 				\hline
 				Alunos interessados & & & Recebe spam & Recebe spam \\
 				\hline
@@ -520,10 +622,10 @@
 			\label{tab:vul}
 		\end{table}
 		~
-		\begin{table}
+		\begin{table}[h!]
 			\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{0.117\textwidth} | C{0.117\textwidth} C{0.117\textwidth} C{0.117\textwidth} C{0.117\textwidth} C{0.117\textwidth} C{0.117\textwidth}}
 				\cline{2-7}
-				& & & \textbf{Insistir para Juliano modificar no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar todas as modificações de uma vez}\\
+				& & & \textbf{Insistir para Juliano modificar no site} & \textbf{Enviar apenas para os interessados} & \textbf{Enviar para todos} & \textbf{Enviar blocos de modificações}\\
 				\hline
 				\multirow{3}{*}{Eduardo}  & Para ele mesmo & Prezar pela pós-graduação & - - & - - & - & - \\
 				\cline{2-7}
@@ -538,9 +640,9 @@
 		\end{table}
 		
 	\subsection{Análise das possíveis decisões}
-		Pelas tabelas acima, é possível observar que qualquer decisão que não seja a de modificar o documento no \emph{site} é igualmente boa.
+		Pelas tabelas acima, é possível observar que, para Juliano, qualquer decisão que não seja a de modificar o documento no \emph{site} é igualmente boa.
 
-		Já para os alunos interessados, como seu objetivo é ser notificados, todas as alternativas são boas, porém a melhor seria que eles só recebam e-mails sobre seu grupo.
+		Já para os alunos interessados, como seu objetivo é serem notificados, todas as alternativas são boas, porém a melhor seria que eles só recebam e-mails sobre seu grupo.
 		A opção de enviar todas as atualizações de uma vez pode não ser vantajosa, pois os grupos ficarão em dúvida se seu pedido foi concedido até que a mensagem seja enviada.
 
 		Para os alunos não interessados, as alternativas nas quais eles não recebem spam são ótimas, ou seja, modificar o documento ou enviar e-mails somente para os interessados.
@@ -549,12 +651,23 @@
 		Entre as demais, a pior seria ter que enviar e-mails para cada grupo dependendo da modificação, por tomar um tempo que ele poderia estar dedicando ao seu mestrado.
 
 	\subsection{Decisão consensual}
-		A melhor opção seria Eduardo tentar convencer Juliano a fazer as atualizações no \emph{site}.
-		Entretanto, se Eduardo perceber que isso afetará muito negativamente sua relação com o orientador e que seu mestrado poderá ser prejudicado, Eduardo pode juntar várias modificações e enviar em um bloco.
+		A melhor decisão seria Eduardo tentar convencer Juliano a fazer as atualizações no \emph{site}, por ser um lugar apropriado para colocar este tipo de informação e esta opção não incomodará os alunos.
+		
+		Entretanto, se Eduardo perceber que isso afetará negativamente sua relação com o orientador e que seu mestrado poderá ser prejudicado, Eduardo pode juntar várias modificações e enviar em um bloco, de forma a diminuir a quantidade de e-mails que ele precisa enviar, poupando seu tempo e diminuindo a quantidade do ``spam acadêmico''.
+		
+		Ademais, na próxima escolha de horários, Juliano e Eduardo devem levar em conta a disponibilidade dos alunos para não ocorrer uma situação semelhante a essa, por meio de, por exemplo, votações.
 		
 \newpage
 \section{Conclusão}
-
+	O correio eletrônico trouxe facilidades indiscutíveis para a vida cotidiana, porém sua utilização exagerada para fins comerciais ou sua mera utilização para fins ilegais incomoda os usuários deste meio de comunicação.
+	
+	O estudo de caso nos permite perceber que o spam não é necessariamente ligado a fraudes ou anúncios, e que, apesar de não ser possível definí-lo, é fácil de identificá-lo.
+	
+	Além da inconveniência gerada pelo spam, é necessário considerar o volume de dados sem utilidade que trafega pela rede, e do espaço necessário para seu armazenamento.
+	As milhões de mensagens ilegítimas enviadas pelos \emph{bots} tomam o espaço de armazenamento de dados úteis, além de diminuir sua velocidade de transmissão.
+	
+	Felizmente, existem várias empresas fazendo o possível para diminuir a quantidade de spam derrubando \emph{spambots}.
+	E, enquanto o spam não diminui, há outras filtrando as mensagens para propiciar uma melhor experiência para o usuário.
 \newpage
 \printglossaries
 \addcontentsline{toc}{section}{Glossário}
