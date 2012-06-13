@@ -27,8 +27,9 @@
 	\end{scriptsize}
  \end{frame}
 }
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\setbeamerfont{footnote}{size=\fontsize{5pt}{6pt}}
 
 \begin{document}
 
@@ -37,32 +38,40 @@
 \end{frame}
 
 \begin{frame}
-	\tableofcontents[hidecurrentsubsection,hideothersubsections]
+	\begin{scriptsize}
+		\tableofcontents[hidecurrentsubsection,hideothersubsections]
+	\end{scriptsize}
 \end{frame}
 
 \section{O que é Spam}
-\begin{frame}{Origem}
+\begin{frame}{O que é Spam}
 	\begin{itemize}
 		\item Sp(iced H)am, 1937
-		\item Monty Python, 1970 [1]
+		\item Monty Python, 1970 \footnote{\url{http://www.youtube.com/watch?v=anwy2MPT5RE}}
 		\item “spam spam spam spam spam spam spam baked beans  spam spam spam and  spam”
 	\end{itemize}
 
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=5cm]{Imagens/spam/spam.png}
+		\includegraphics[width=3cm]{Imagens/spam/spam.png}
 	\end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{O que é spam}
 	\begin{itemize}
 		\item E-mail indesejado ou inapropriado
-		\begin{itemize}
-			\item Propaganda
-			\item Corrente
-			\item Vírus
-			\item Informativo
-		\end{itemize}	
+			\begin{table}
+			\begin{flushleft}
+				\begin{tabular}{p{0.25\textwidth} p{0.25\textwidth} p{0.25\textwidth}}
+					Fraude & Adulto & Financeiro \\
+					Farmacêuticas & Phishing & Diplomas \\
+					Software & Malware & Jogos \\
+					Outros & Ações & Réplicas \\
+					Relacionamento\\
+				\end{tabular}
+			\end{flushleft}
+			\end{table}
+
 		\item Enviado independentemente da localização do púbico-alvo
 		\begin{itemize}
 			\item Bots
@@ -74,18 +83,129 @@
 \begin{frame}{Filtros de Spam}
 	\begin{itemize}
 		\item Separar mensagens de propagandas
+		\begin{itemize}
+			\item Baseado em cabeçalho
+			\item Baseado em palavras utilizadas
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
-\section{Estatísticas}
-\begin{frame}{Estatísticas}
+\subsection{Baseado na estrutura do texto} 
+\begin{frame}{Baseado na estrutura do texto}
 	\begin{itemize}
-		\item 94 milhões de spams no primeiro trimestre
-		\item Quatro vezes mais spam do que ham
-		\item Mais de um terço dos e-mails comerciais não chegam
-		\item 1 em cada 10 usuários compra produtos que são anunciados em spams
-		\item Tráfego automatizado já supera o humano
+		\item Baseado em cadeias específicas no cabeçalho do texto
+		\item Alto nível de personalização obtido
+		\item Poucos falsos-positivos
+		\item Necessidade de criar vários filtros
 	\end{itemize}
+\end{frame}
+
+\subsection{Whitelist/Verificação} 
+\begin{frame}{\emph{Whitelist}/Verificação}
+	\begin{itemize}
+		\item \emph{Whitelist}
+		\item Validação no servidor
+		\item Spams possuem endereços de resposta falso
+		\begin{itemize}
+			\item Se o spammer resolver validar, ficará mais fácil de rastreá-lo
+		\end{itemize}
+		\item Problema para algum usuário legítimo
+		\item \emph{Corlive}
+		\begin{itemize}
+			\item Utiliza \emph{captcha}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Distribuição adaptativa de blacklist}
+\begin{frame}{Distribuição adaptativa de \emph{blacklist}}
+	\begin{itemize}
+		\item Mensagens classificadas como spam por usuários ou pelo próprio servidor
+		\item Baseado em técnicas estatísticas
+		\begin{itemize}
+			\item Mutações no e-mail não impeçam classificação como spam
+		\end{itemize}
+		\item Performance baixa
+		\begin{itemize}
+			\item Verificação da mensagem no servidor é necessária
+		\end{itemize}
+		\item Pyzor
+	\end{itemize}
+\end{frame}
+
+\subsection{Ranking baseado em regras}
+\begin{frame}{Ranking baseado em regras}
+	\begin{itemize}
+		\item Regras baseadas em ranking e expressões regulares
+		\item Pontos adicionados/subtraídos dependendo da correspondência
+		\item Algumas regras são constantes
+		\begin{itemize}
+			\item Endereço falso
+		\end{itemize}
+		\item Outras não
+		\begin{itemize}
+			\item Produto oferecido pela propaganda
+		\end{itemize}
+		\item SpamAssassin
+	\end{itemize}
+\end{frame}
+
+\subsection{Filtro Bayesiano}
+\begin{frame}{Filtro Bayesiano}
+	\begin{itemize}
+		\item Baseado em modelos Bayesianos de probabilidade
+		\item Dicionário de palavras
+		\begin{itemize}
+			\item Contém probabilidade da palavra pertencer a um spam
+			\item Cálculo da probabilidade da mensagem ser spam
+		\end{itemize}
+		\item Automatizável e simples
+		\begin{itemize}
+			\item Capacidade de aprendizado
+		\end{itemize}
+		\item SpamBayes
+		\item Gmail, MSN Hotmail, Yahoo! mail
+	\end{itemize}
+\end{frame}
+
+\subsection{Filtro Markoviano}
+\begin{frame}{Filtro Markoviano}
+	\begin{itemize}
+		\item Filtro estocástico baseado na teoria de Cadeias de Markov
+		\item Baseado em frases
+		\item Desempenho tende a ser maior
+		\item CRM114
+	\end{itemize}
+\end{frame}
+
+\subsection{Gmail}
+\begin{frame}{Gmail}
+	\begin{itemize}
+		\item Aprendizado baseado em instâncias
+		\begin{itemize}
+			\item \emph{Community clicks}
+		\end{itemize}
+		\item Aprendizado de máquina
+		\begin{itemize}
+			\item Combina e indexa conjuntos de busca
+			\item Google Book Search
+		\end{itemize}
+		\item Endereço do rementente sempre é checado por meio de órgãos autenticadores
+		\begin{itemize}
+			\item Não ser certificado não é suficiente para ser marcado como spam
+		\end{itemize}
+		\item Possibilidade de criar filtros personalizados
+		\begin{itemize}
+			\item Baseado em regras nos campos de remetente, destinatário, assunto, corpo da mensagem
+			\item Filtrar por palavras utilizando operadores lógicos \textsc{and}, \textsc{or}, \textsc{not} ou "qualquer um" (\textsc{*})
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Gmail}
+	\begin{figure}
+		\includegraphics[height=5cm]{Imagens/gmail/spamchart.png} \footnote{Retirado de \url{http://www.google.com/mail/help/fightspam/spamexplained.html}}
+	\end{figure}
 \end{frame}
 
 \section{Casos reais}
@@ -103,10 +223,16 @@
 \begin{frame}{Coxinha em promoção}
 	\begin{itemize}
 		\item Jornalista Lúcia Guimarães
-		\item Cidade Baixa de Porto Alegre
-		\item 50\% de desconto
 		\begin{itemize}
-			\item De R\$12.50 por R\$6.00
+			\item Mora em Nova Iorque
+		\end{itemize}
+		\item Recebe e-mail de uma promoção de um salgado
+		\begin{itemize}
+			\item Cidade Baixa de Porto Alegre
+			\item 50\% de desconto
+			\begin{itemize}
+				\item De R\$12.50 por R\$6.00
+			\end{itemize}
 		\end{itemize}
 		\item R\$4.000 a passagem para Porto Alegre
 	\end{itemize}
