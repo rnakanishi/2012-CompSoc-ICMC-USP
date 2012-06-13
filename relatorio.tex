@@ -23,11 +23,11 @@
 
 \newacronym{acm}{ACM}{Association for Computing Machinery}
 \newglossaryentry{blacklist} {
-	name={blacklist}, 
+	name={\emph{blacklist}}, 
 	description={Lista de mensagens classificadas como spam}
 }
 \newglossaryentry{bot} {
-	name={bot}, 
+	name={\emph{bot}}, 
 	description={Softwares criados para realizar alguma tarefa de forma automatizada}
 }
 \newglossaryentry{cabecalho} {
@@ -56,8 +56,16 @@
 	description={Classificação errônea na qual, para este contexto, um e-mail legítimo é classificado como spam}
 }
 \newglossaryentry{gpl} {
-	name={\emph{GPL}}, 
+	name={GPL}, 
 	description={\emph{General Public License}. Licença para software livre}
+}
+\newglossaryentry{link} {
+	name=\emph{link},
+	description={Conexão que leva de uma página da \emph{Web} a, possivelmente, outra}
+}
+\newglossaryentry{malware} {
+	name={\emph{malware}},
+	description={\emph{Malicious Software}. Software destinado a infectar um sistema, com o intuito de causar algum dano ou roubar informações}
 }
 \newglossaryentry{mta} {
 	name={MTA},
@@ -67,16 +75,21 @@
 	name={software OEM},
 	description={Produtos ou componentes comprados em grandes lotes a preços menores sob o nome de uma empresa}
 }
+\newglossaryentry{redezumbi} {
+	name={rede zumbi},
+	description={Rede formada por máquinas infectadas por malwares, geralmente destinada a enviar e-mails maliciosos ou contendo propaganda(\glspl{spambot})},
+	plural={redes zumbi}
+}
 \newglossaryentry{spambot} {
-	name={spambot},
-	description={Bot projetado para enviar spam de forma massiva, automaticamente}
+	name={\emph{spambot}},
+	description={\Gls{bot} projetado para enviar spam de forma massiva, automaticamente}
 }
 \newglossaryentry{threshold} {
-	name={threshold}, 
+	name={\emph{threshold}}, 
 	description={Valor utilizado como limitante para uma classificação}
 }
 \newglossaryentry{whitelist} {
-	name={whitelist}, 
+	name={\emph{whitelist}}, 
 	description={Lista de endereços de e-mail de remetentes legítimos, previamente validados}
 }
 
@@ -89,14 +102,15 @@
 \begin{abstract}
 	O uso do correio eletrônico se tornou uma necessidade pessoal com o advento da tecnologia. Com esse novo meio de comunicação há maior praticidade e agilidade na troca de mensagens, de forma que não é necessário se locomover longas distâncias para conversar com outras pessoas.
 
-	Entretanto, a facilidade adquirida também permite o envio de milhares de mensagens eletrônicas em poucos segundos, que podem ser mensagens importantes, como um aviso de uma empresa de grande porte para seus funcionários, ou \emph{spam}, um fenômeno que cresce dia após dia.
+	Entretanto, a facilidade adquirida também permite o envio de milhares de mensagens eletrônicas em poucos segundos, que podem ser mensagens importantes, como um aviso de uma empresa de grande porte para seus funcionários, ou \emph{spam}, um fenômeno que cresce cada vez mais.
 
-	((Mudar isso))
 	Nosso objetivo, nesta monografia, é mostrar como o spam vem trazendo inconveniências os usuários de \gls{email}.
-	Mostraremos a origem da palavra e seus usos nos dias atuais. 
-	((colocar algo como em seguida aqui)) métodos utilizados para separar mensagens importantes de spam.
+	Mostraremos a origem da palavra e seus usos nos dias atuais, sua situação no mundo e estatísticas.
+	Depois, mostraremos métodos utilizados por provedores de e-mail para separar mensagens importantes de spam.
 	Em seguida, alguns exemplos de como esse tipo de mensagem traz desconforto para quem o recebe. 
 	Por fim, um estudo de caso, analisando as violações dos códigos da \gls{acm}~\cite{ACM} e a conclusão.
+	
+	Os termos desconhecidos podem ter seus signifcados buscados no glossário, presente no fim desta monografia.
 \end{abstract}
 
 \newpage
@@ -106,10 +120,11 @@
 
 
 \section{Introdução}
-	Nesta seção será feita uma breve descrição de como o termo spam (para falar de mensagens indesejadas) foi originado, seguida de ((blablabla)).
+	Nesta seção será feita uma breve descrição de como a palavra ``spam'' começou a ser utilizada para descrever e-mails indesejados.
+	Em seguida, serão apresentados alguns fatos relacionados a este tipo de mensagem, considerando o Brasil e o mundo.
 
 	\subsection{Origem do termo}
-		A aparição da palavra Spam que originou sua utilização atual ocorreu no episódio 12 da segunda temporada de uma série britânica de comédia chamada \emph{Monty Python's Flying Circus}. 
+		A aparição da palavra Spam que originou sua utilização atual ocorreu no episódio 12 da segunda temporada de uma série britânica de comédia chamada \emph{Monty Python's Flying Circus}~\cite{montyPython:fc, mpyt}. 
 		Spam é uma mistura de carnes de porco apimentadas e enlatadas, vindo de \emph{SPiced hAM} (Figura \ref{fig:spam}), criado pela empresa estadunidense \emph{Hormel Foods Corporation}.
 
 		Durante o episódio, personagens discutem sobre o cardápio de um café. 
@@ -124,8 +139,8 @@
 			\label{fig:spam}
 		\end{figure}
 
-	\subsection{Spam ((na atualidade))}
-		A empresa especializada em segurança \emph{M86 Security Labs}~\cite{m86} separa spam em 13 categorias listadas abaixo:
+	\subsection{Spam no mundo}
+		A empresa especializada em segurança \emph{M86 Security Labs} separa spam em 13 categorias listadas abaixo~\cite{spam:m86-type}:
 		\begin{description}
 			\item [Fraude] Seu objetivo é fazer o destinatário acreditar que ganhou algo, como um prêmio.
 			\item [Adulto] Possui conteúdo pornográfico e oferece cadastro gratuito a \emph{sites} adultos ou a serviços de acompanhantes.
@@ -138,7 +153,7 @@
 			\item [Diplomas] Anuncia qualificações como diplomas de universidades ou cursos de treinamento.
 			\item [Réplicas] Anuncia imitações baratas de produtos como bolsas, relógios e celulares.
 			\item [Software] Anuncia softwares baratos, usualmente prometendo venda de \gls{oem}.
-			\item [Malware] Contem anexos maliciosos ou \emph{links} que levam a \emph{websites} com vírus.
+			\item [Malware] Contem anexos maliciosos ou \glspl{link} que levam a \emph{websites} com vírus.
 			\item [Jogos de azar] Promove cassinos ou \emph{sites} de pôquer, que geralmente oferecem bônus por cadastramento.
 			\item [Relacionamento] Podem ser incluídos na categoria de fraudes, em que mulheres ou homens que fingem ser mulher tentam criar um relacionamento para extorquir dinheiro.
 			\item [Outros] Não são classificados nas categorias supracitadas.
@@ -153,13 +168,13 @@
 			\label{fig:spamtype}
 		\end{figure}
 
-		A distribuição de emissores de spam pelo mundo pode ser vista na Figura \ref{fig:spamworld}.
+		A distribuição de emissores de spam pelo mundo e pelo Brasil podem ser vistas na Figura \ref{fig:spamworld} e na Figura \ref{fig:spambrasil}, respectivamente.
 
 	\begin{figure}[ht]
 		\begin{subfigure}[b]{\textwidth}
 			\centering
 			\includegraphics[height=5cm]{Imagens/m86security/spam-country-map.png}
-			\caption{Mapa de emissores de spam((mude isso))}
+			\caption{Mapa-múndi de emissores de spam}
 		\end{subfigure}
 		~
 		\begin{subfigure}[b]{0.47\textwidth}
@@ -176,13 +191,60 @@
 		\caption{Emissão de spam no mundo}
 		\label{fig:spamworld}
 	\end{figure}
+		~
+	\begin{figure}
+		\centering
+		\includegraphics[height=7cm]{Imagens/spam/brasilspam.png}
+		\caption{Focos de emissores de spam no Brasil}
+		\label{fig:spambrasil}
+	\end{figure}
+	
+	Como se pode ver, no Brasil, os estados que mais emitem de spam são o estado de São Paulo e o Rio de Janeiro, o que condiz com o fato de que são os pólos tecnológicos do país.
 
+	Já no âmbito global, a regra não pode ser generalizada, por ser uma questão que não depende somente do aspecto tecnológico, mas também do econômico e cultural.
+
+	Pode-se tomar como exemplo a Índia, que segundo o mapa da empresa M86 Security Labs e de outra empresa de segurança chamada Sophos~\cite{sophos} é o país que mais envia mensagens ilegítimas no mundo.
+	O grande aumento na quantidade de spam produzido foi, em parte, causado pela expansão rápida de redes com acesso à Internet no país.
+
+	Segundo um consultor na Sophos, a inexperiência de muitos usuários de primeira viagem os levou a serem vítimas de criminosos virtuais, pois a maioria não toma medidas para bloquear infecções por \gls{malware}, adicionando seus computadores em \glspl{redezumbi}~\cite{spam:india}. 
+
+\newpage
+\section {Estatísticas}
+	Abaixo são mostrados dados estatísticos sobre o percentual de spam e seu crescimento nos últimos anos, assim como algumas curiosidades.
+	
+	Na Figura \ref{fig:spambar} estão contidos dados sobre a quantidade de spam, dividida nas categorias abaixo para o ano fiscal de 2011 a 2012~\cite{spam:stats}.
+	\begin{itemize}
+		\item Spam confirmado, representado nos gráficos como \emph{Positive Spam};
+		\item Mensagem suspeita, representada nos gráficos \emph{Suspected Spam};
+		\item Mensagen legítima, representada nos gráficos como \emph{Legitimate Messages};
+		\item Marketing.
+	\end{itemize}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=7cm]{Imagens/spam/2ndQtr-FY2011-12.jpg}
+		\caption{Quantidade de spam de 2011 a 2012}
+		\label{fig:spambar}
+	\end{figure}
+	
+	Em abril de 2012, o sistema antispam \emph{IronPort Antispam System} processou 14.856.078 mensagens de e-mail, das quais 13.158.245 foram identificadas como spam, 10.151 foram classificadas como suspeitas e 419.407 como marketing, acumulando um total de 13.168.396 ($88.6\%$) de spam~\cite{spam:stats}.
+	Os dados podem ser visualizados no gráfico da Figura \ref{fig:spampizza}.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=7cm]{Imagens/spam/Apr2012-Spam.jpg}
+		\caption{Quantidade de spam nas mensagens processadas em abril}
+		\label{fig:spampizza}
+	\end{figure}
+	
+	
+	
 \newpage
 \section{Filtros de Spam}
 	Para acompanhar o aumento do número e da variedade de spams, vem sendo criados vários métodos para separar mensagens importantes de propagandas.
 	São inúmeras as abordagens utilizadas. 
 	Algumas se baseiam no \gls{cabecalho} da mensagem, outras na frequência das palavras utilizadas.
-	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}((citar?)).
+	Nas seções seguintes, serão brevemente discutidas algumas estratégias utilizadas no combate ao spam, e, como um exemplo, serão mostrados alguns dos filtros utilizados pelo \emph{Gmail}((citar?))~\cite{filtros, gmail:youtube, gmail:fightspam}.
 
 	\subsection{Filtro baseado na estrutura do texto}
 		Este tipo de filtro se baseia em cadeias específicas do cabeçalho do e-mail, como, por exemplo, a língua na qual foi escrito e o tipo do conteúdo da mensagem.
@@ -196,20 +258,20 @@
 
 
 	\subsection{\emph{Whitelist}/Verificação}
-		Uma abordagem mais agressiva para a filtragem de spam é a utilização de \emph{Whitelist} em conjunto com a verificação automática.
+		Uma abordagem mais agressiva para a filtragem de spam é a utilização de \glspl{whitelist} em conjunto com a verificação automática.
 
 		Qualquer endereço que esteja nesta \emph{whitelist} tem sua mensagem enviada sem maiores problemas.
-		Caso o endereço não esteja contido na lista, o \emph{\gls{mta}} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
+		Caso o endereço não esteja contido na lista, o \gls{mta} envia uma mensagem de volta para o remetente, com instruções que, ao serem seguidas, adicionam o endereço do remetente na \emph{whitelist}.
 
 		Como a maioria das mensagens de spam possui endereços de resposta falsos, as instruções não seriam seguidas e o e-mail não chegaria à caixa de entrada do destinatário.
 		Caso o \emph{spammer} decida fazer o que lhe foi dito, ele será adicionado à lista, porém isso o torna mais facilmente rastreável.
 		
 		Apesar de ser uma maneira eficaz de diminuir os spams, ela pode prejudicar usuários legítimos que não podem ou querem atender a essa exigência, já que isso implicaria no não recebimento de sua mensagem.
 
-		Como um exemplo deste tipo de abordagem, tem-se o \emph{Corlive.com}~\cite{corlive}, que é um servidor de e-mail que utiliza \emph{Captcha}~\cite{captcha} para validar os e-mails enviados e não permitir que \emph{bots} enviem spam.
+		Como um exemplo deste tipo de abordagem, tem-se o \emph{Corlive.com}~\cite{corlive}, que é um servidor de e-mail que utiliza \gls{captcha}~\cite{captcha} para validar os e-mails enviados e não permitir que \emph{bots} enviem spam.
 
 	\subsection{Distribuição adaptativa de \emph{blacklist}}
-		A \emph{blacklist} é formada por mensagens que foram classificadas como spam por usuários ou mesmo por endereços especiamente criados por servidores para atrair spam.
+		A \gls{blacklist} é formada por mensagens que foram classificadas como spam por usuários ou mesmo por endereços especiamente criados por servidores para atrair spam.
 
 		Ao receber uma mensagem, o MTA utiliza um filtro por \emph{blacklist} para determinar se mesma é um spam conhecido, e ela só é enviada à caixa de entrada do destinatário caso ela não seja classificada como ilegítima.
 
@@ -219,20 +281,20 @@
 		
 		Como é necessária a verificação da mensagem em um servidor, a performance deste método comparada a outros é baixa, sendo ele bastante lento.
 
-		Um exemplo de software que implementa esta abordagem é o \emph{Pyzor}~\cite{pyzor}, um software implementado em \emph{Python} sob a licença \emph{GPL}.
+		Um exemplo de software que implementa esta abordagem é o \emph{Pyzor}~\cite{pyzor}, um software implementado em \emph{Python} sob a licença \gls{gpl}.
 
 	\subsection{Ranking baseado em regras}
 		Este filtro possui regras de ranking, principalmente expressões regulares, e tenta fazer correspondências entre o padrão e a mensagem. 
 		Cada equivalência adiciona ou diminui pontos da mensagem.
 		
-		Se a quantidade de pontos do e-mail exceder um determinado threshold, é classificado como spam, caso contrário, é classificado como uma mensagem legítima.
+		Se a quantidade de pontos do e-mail exceder um determinado \gls{threshold}, é classificado como spam, caso contrário, é classificado como uma mensagem legítima.
 
 		A dificuldade deste tipo de filtro é que, apesar de existirem regras que são contantes com o decorrer do tempo, como endereço de resposta falso ou áudio como tipo de conteúdo, há outras que mudam com o tempo, como os produtos dos quais os spams fazem propaganda, e isso causa a necessidade constante de atualização das regras.
 
 		Um software que implementa este tipo de filtro é o \emph{SpamAssassin}~\cite{spamassassin}, um projeto open-source da \emph{Apache}.
 
 	\subsection{Filtro Bayesiano}
-		A abordagem do filtro Bayesiano, criado por Paul Graham, é a utilização de modelos Bayesianos de probabilidade para determinar se uma mensagem é legítima ou não.
+		A abordagem do filtro Bayesiano, criado por Paul Graham~\cite{bayes:graham}, é a utilização de modelos Bayesianos de probabilidade para determinar se uma mensagem é legítima ou não.
 
 		É criado um dicionário de palavras contendo a probabilidade de ela estar em um spam e a probabilidade de estar em uma mensagem válida. Esse dicionário é utilizado para calcular a probabilidade geral de a mensagem ser um spam, com base na teoria da probabilidade condicional de Bayes.
 
@@ -247,19 +309,19 @@
 
 		Diferentemente do filtro Bayesiano, que é baseado em palavras independentes, o filtro Markoviano trabalha em cima de frases, e por isso, seu desempenho tende a ser maior, já que utiliza uma abordagem holística do texto.
 		
-	Esta estratégia é utilizada no filtro de spam \gls{crm114}, juntamente com outras abordagens que não serão discutidas neste trabalho. Seu desempenho foi testado para diferenciar documentos japoneses confidenciais de não confidenciais, e a acurácia obtida foi maior que $99\%$ e taxa de falsos-positivos foi menor que $5.3\%$~\cite{fmarkov:japtest}.
+	Esta estratégia é utilizada no filtro de spam \gls{crm114}~\cite{crm114}, juntamente com outras abordagens que não serão discutidas neste trabalho. Seu desempenho foi testado para diferenciar documentos japoneses confidenciais de não confidenciais, e a acurácia obtida foi maior que $99\%$ e taxa de falsos-positivos foi menor que $5.3\%$~\cite{fmarkov:japtest}.
 
 	\subsection{Gmail}
-		Uma das técnicas utilizadas pelo provedor de serviço de correio eletrônico \emph{Gmail} é o aprendizado baseado em instâncias, chamado pelo provedor de \emph{Community clicks}, em que os filtros de spam usados para todos os usuários são modificados a cada mensagem que um usuário marca como spam ou como mensagem legítima.
+		Uma das técnicas utilizadas pelo provedor de serviço de correio eletrônico \emph{Gmail} é o aprendizado baseado em instâncias, chamado pelo provedor de \emph{Community clicks}, em que os filtros de spam usados para todos os usuários são modificados a cada mensagem que um usuário marca como spam ou como mensagem legítima~\cite{gmail:fightspam}.
 
 		Outra técnica é o aprendizado de máquina usado para combinar e indexar os conjuntos de busca do buscador Google, que permite a junção de vários fatores para identificar mensagens semelhantes e classificá-las como spam.
-		Além disso, são aplicadas ferramentas como \emph{OCR} de outro serviço da empresa, o \emph{Google Book Search}, serviço de busca em livros (podem ser imagens), para identificar spams em forma de imagens.
+		Além disso, são aplicadas ferramentas como \emph{OCR} de outro serviço da empresa, o \emph{Google Book Search}, serviço de busca em livros (podem ser imagens), para identificar spams em forma de imagens~\cite{gmail:youtube}.
 
 		A filtragem pode feita por endereço, ou seja, se um usuário marca a mensagem de um emissor como spam várias vezes, próximas mensagens enviadas por esse endereço irão para a caixa de spam automaticamente, como um filtro por distribuição de blacklist.
 
 		Além disso, sempre é checado se o endereço do remetente é autenticado por meio de órgãos autenticadores para tentar impedir golpes de \emph{phishing}.
 		Entretanto, não ter um certificado não é suficiente para a mensagem ser marcada como spam.
-		Esta checagem é feita como parte da filtragem e é combinada com denúncias de usuários e outras técnicas.
+		Esta checagem é feita como parte da filtragem e é combinada com denúncias de usuários e outras técnicas~\cite{gmail:filtros}.
 
 		O \emph{Gmail} também permite a criação personalizada de fitros de spam baseados em regras, de acordo com os seguintes campos do e-mail: remetente, destinatário, assunto e corpo da mensagem. 
 		É possível, ainda, filtrar pela presença ou ausência de palavras, utilizar operadores lógicos como \emph{e}, \emph{ou} e \emph{não}, e denotar ``qualquer um'' por meio de \emph{*}.
@@ -282,14 +344,13 @@
 		O salgado, um espeto de ``Coxinha de Asa'', custava $R\$12,50$ e, com um desconto de aproximadamente $50\%$, passou a custar $R\$6,00$.
 
 		A notificação da promoção para Lúcia foi feita via e-mail e ela gostaria de aproveitar a promoção, se pudesse.
-		O comentário feito por Lúcia sobre o e-mail pode ser visto à seguir.
+		O comentário feito por Lúcia sobre o e-mail pode ser visto à seguir~\cite{cr:coxinha}.
 
 		``Foi o Boteco do Joaquim que avisou esta guria da promoção. E concluo a afirmação no tom agudo de uma interrogação, como fazem os gaúchos. Uma pena que não posso economizar $R\$ 6,50$ num almoço porque a passagem daqui para o Boteco custa $R\$ 4$ mil.''
 
 		Como se pode perceber, a escritora não mora em Porto Alegre.
 		Na verdade, sua atual moradia é em Nova Iorque e, ainda assim, ela recebe e-mails com propagandas de coxinhas da Cidade Baixa.
-
-		((Ligar))
+		Esse não foi o único spam com propagandas de lugares em que ela não poderia chegar, como se pode ver pelo trecho abaixo:
 
 		``Se alguma corporação estiver espionando minha correspondência eletrônica com base num algoritmo, pode montar um perfil em que: 
 		Eu como coxinha em Porto Alegre; 
